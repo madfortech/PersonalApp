@@ -17,26 +17,27 @@
     <meta property="og:description" content="Description goes here">
     <meta property="og:title" content="Personal App ">
     <meta name="description" content="description goes here ">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css?h=025df1ec88740cad5ff14bb3380da6dd')}}">
-    <!-- Manifest -->
-    <link rel="manifest" href="{{asset('manifest.json?h=4a9506ebdc1ac45662bbc45b48b2fd8d')}}">
+     
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,900&amp;display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('css/styles.min.css?h=c7c38557be8a5055819d77e297deacce')}}">
+
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&display=swap'); 
+    </style>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
-<body>
+<body class="bg-slate-300">
     @include('layouts.nav')
 
-    <main class="main">
+    <main class="py-2">
         <!-- Start: 1 Row 2 Columns -->
             @yield('content')
         <!-- End: 1 Row 2 Columns -->
     </main>
     <!--End Main Comment-->
-    <script src="{{asset('js/jquery.min.js?h=84e399b8f2181ccd73394fdeddff1638')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js?h=981245863c383366a329259d02b8172c')}}"></script>
 </body>
 </html>

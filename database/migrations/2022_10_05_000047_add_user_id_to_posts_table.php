@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable(true); 
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+        Schema::create('posts', function (Blueprint $table) {
+       
         });
     }
 
@@ -29,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        
+        Schema::drop('posts');
+        
     }
 };

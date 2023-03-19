@@ -1,127 +1,119 @@
 @extends('layouts.app')
 @section('title', 'Register') 
 @section('content')
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-md-6 offset-md-3">
-                    <div>
-                        <h1 class="text-uppercase text-center mt-2 h1-title">
-                            register
-                        </h1>
+            <div class="flex">
+                <div class="mx-auto w-7/12  mt-24 mb-24">
+                    <h1 class="text-center text-3xl">
+                        register
+                    </h1>
+                    <div class="mx-auto lg:w-2/6">
+
                         <form 
                             method="POST" 
                             action="{{ route('register') }}"
-                            class="mb-2 form">
+                            class="mt-4 border-0 bg-gray-200 p-5">
                             @csrf
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="name">
+                                <div class="mt-2">
+                                
+                                    <label for="name">
                                         {{ __('Name') }}
                                     </label>
                                     
-                                    <input 
-                                    class="form-control form-control-sm
-                                    @error('name') is-invalid @enderror" 
-                                    type="text" 
-                                    required=""
-                                    name="name" 
-                                    value="{{ old('name') }}"
-                                    placeholder="full name"
-                                    autocomplete="name"
-                                    autofocus>
+                                    <x-input
+                                        name="name" 
+                                        value="{{ old('name') }}"
+                                        placeholder="full name"
+                                        autocomplete="name"
+                                        autofocus>
+                                    </x-input>
                                     
                                     @error('name')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span  role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
 
-                                  
                                 </div>
-                            </div>
-                            <!-- name -->
+                                <!-- name -->
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="email">
+                                <div class="mt-2">
+                               
+                                    <label  for="email">
                                         {{ __('Email Address') }}
                                     </label>
-                                    <input 
-                                    class="form-control form-control-sm
-                                    @error('email') is-invalid @enderror" 
-                                    type="email" 
-                                    required=""
-                                    name="email" 
-                                    value="{{ old('email') }}"
-                                    placeholder="admin@admin.com"
-                                    autocomplete="email">
-                                    
+                                    <x-input
+                                        type="email" 
+                                        name="email" 
+                                        value="{{ old('email') }}"
+                                        placeholder="admin@admin.com"
+                                        autocomplete="email">
+
+                                    </x-input>
+                                   
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span  role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
  
                                 </div>
-                            </div>
-                            <!-- email -->
+                            
+                                <!-- email -->
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="password">
+                                <div class="mt-2">
+                                 
+                                    <label  for="password">
                                         {{ __('Password') }}
                                     </label>
-                                    <input 
-                                    class="form-control form-control-sm
-                                    @error('password') is-invalid @enderror" 
-                                    type="password" 
-                                    required=""
-                                    name="password" 
-                                    value="{{ old('password') }}"
-                                    placeholder="new password"
-                                    autocomplete="new-password">
+                                    <x-input
+                                        type="password" 
+                                        name="password" 
+                                        value="{{ old('password') }}"
+                                        placeholder="new password"
+                                        autocomplete="new-password">
+
+                                    </x-input>
                                     
                                     @error('password')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span  role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                
                                 </div>
-                            </div>
-                            <!-- password -->
+                                <!-- password -->
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="password-confirm" >
+                                <div class="mt-2">
+                                 
+                                    <label for="password-confirm" >
                                         {{ __('Confirm Password') }}
                                     </label>
-                                    <input 
-                                    class="form-control form-control-sm" 
-                                    type="password" 
-                                    required=""
-                                    name="password_confirmation" 
-                                    placeholder="password confirmation"
-                                    autocomplete="new-password">
-                                </div>
-                            </div>
-                            <!-- password -->
+                                    <x-input
+                                        type="password" 
+                                        name="password_confirmation" 
+                                        placeholder="password confirmation"
+                                        autocomplete="new-password">
 
-                            
-                            <div class="row gx-0 mb-2">
-                                <div class="col d-grid">
-                                    <button 
-                                        class="btn text-uppercase" 
-                                        type="submit">
-                                            {{ __('Register') }}
-                                    </button>
+                                    </x-input>
+                                    
                                 </div>
-                            </div>
+                                <!-- confirm password -->
+
+                                    <div class="mt-2">
+                                     
+                                        <button 
+                                            type="submit"
+                                            class="w-full bg-green-900 p-1 capitalize
+                                            text-white hover:bg-green-800
+                                            rounded-full">
+                                                {{ __('Register') }}
+                                        </button>
+                                    </div>
 
                           
                         </form>
                     </div>
                 </div>
             </div>
-        </div> 
 @endsection

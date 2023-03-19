@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\ChangePasswordControler;
 use App\Http\Controllers\Auth\EditProfileController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\RolesController;
 
 // https://hdtuto.com/article/laravel-8-spatie-roles-and-permissions-tutorial
 /*
@@ -50,7 +49,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 
 Route::group(['middleware' => ['auth']], function() {
 
-    Route::resource('roles', RolesController::class);
-    Route::resource('users', UsersController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 
 });

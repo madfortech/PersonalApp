@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        // Schema::drop('categories', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
 
-        Schema::create('tags', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        // Schema::drop('tags', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
     }
 
     

@@ -10,14 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable  implements MustVerifyEmail
+class User extends Authenticatable  
 {
 
-    use SoftDeletes;
-    use Notifiable;
-    
-    use HasFactory;
+    use SoftDeletes,Notifiable,HasFactory,HasRoles;
 
     public $table = 'users';
 
@@ -85,12 +83,5 @@ class User extends Authenticatable  implements MustVerifyEmail
         return $date->format('Y-m-d H:i:s');
     }
     
-    
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
-     
+  
 }
