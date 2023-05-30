@@ -1,21 +1,21 @@
 @extends('layouts.app')
 @section('title', 'Reset Password') 
 @section('content')
-            <div class="flex">
-                <div class="mx-auto w-7/12  mt-24 mb-24">
-                    <h1 class="text-center text-3xl">
-                        reset password
-                    </h1>
-                    <div class="mx-auto lg:w-2/6">
-                        <form 
-                            method="POST" 
-                            action="{{ route('password.email') }}"
-                            class="mt-4 border-0 bg-gray-200 p-5">
-                            @csrf
+                <div class="grid-rows-1 mt-44">
+                    <div class="container mx-auto">
+                    
+                        <div class="w-50 mx-auto  max-w-screen-md p-7">
+                            <h1 class="mb-5 text-center capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                                {{ __('Reset Password') }} 
+                            </h1>
+                            <form 
+                                method="POST" 
+                                action="{{ route('password.email') }}">
+                                @csrf
 
-                                <div class="mt-2">
-                                    <label  for="email">
-                                    {{ __('Email Address') }} 
+                                <div class="flex flex-col p-5">
+                                    <label for="email" class="uppercase mt-4">
+                                        {{ __('Email Address *') }} 
                                     </label>
                                     <x-input
                                         type="email" 
@@ -23,8 +23,8 @@
                                         value="{{ old('email') }}"
                                         placeholder="admin@admin.com" 
                                         autocomplete="email" 
-                                        autofocus>
-
+                                        autofocus
+                                        class="border-2 rounded-lg">
                                     </x-input>
                                    
                                     @error('email')
@@ -32,25 +32,18 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-                           
-                            <!-- Email -->
 
-                            <div class="mt-2">
-                                
-                                    <button 
-                                        class="w-full bg-green-900 p-1 
-                                        capitalize
-                                         text-white hover:bg-green-800
-                                         rounded-full" 
-                                            type="submit">
-                                            {{ __('Send Password Reset Link') }}
+                                    <button class="border-0 rounded-lg bg-green-400 p-1
+                                    hover:bg-green-500
+                                     text-gray-50
+                                        capitalize mt-2">
+                                        {{ __('Send Password Reset Link') }}
                                     </button>
-                               
-                            </div>
- 
-                        </form>
+                                </div>
+                                <!-- Email -->
+
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 @endsection

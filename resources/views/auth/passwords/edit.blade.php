@@ -1,84 +1,103 @@
 @extends('layouts.app')
 @section('title', 'Change Password') 
 @section('content')
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-md-6">
-                    <div>
-                        <h2 class="text-uppercase mt-2 h2-title">
-                            edit password
-                        </h2>
+            <div class="grid-rows-1 mt-44">
+                <div class="container mx-auto">
+                    
+                    <div class="w-50  max-w-screen-md p-7">
+                        <h1 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                        {{ __('update password') }} 
+                        </h1>
+
+                        @if (session('success'))
+                        <div class="text-green-50 p-2 mt-2 bg-green-800 rounded-full">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+                        
                         <form 
-                            class="mb-2 form p-2" 
+                            class="mt-4 border-0 bg-gray-200 p-5"
                             method="post" 
-                            action="{{ route("profile.password.update") }}"
+                            action="{{ route("password.update") }}"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="row gx-0 mb-2">
+
                                 
-                                    @if(Session::has('success'))
-                                        <div class="alert alert-success">
+                                @if(Session::has('success'))
+                                    <div class="text-green-800">
                                         {{Session::get('success')}}
-                                        </div>
-                                    @endif
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="password">
-                                        new password *
+                                    </div>
+                                @endif
+                                <div class="mt-2">
+                                     
+                                    <label for="password">
+                                    {{ __('Password *') }} 
                                     </label>
-                                    <input 
-                                    class="form-control form-control-sm
-                                    {{ $errors->has('password') ? 'is-invalid' : '' }}" 
-                                    type="password"
-                                    minlength="8" 
-                                    maxlength="8" 
-                                    required=""
-                                    placeholder="new password" 
-                                    name="password">
-                                    @if($errors->has('password'))
-                                        <span class="text-danger">
-                                            {{ $errors->first('password') }}
+
+                                    <x-input
+                                        class="{{ $errors->has('password') ? 'is-invalid' : '' }}" 
+                                        type="password"
+                                        minlength="8" 
+                                        maxlength="8" 
+                                        
+                                        placeholder="new password" 
+                                        name="password">
+                                        @if($errors->has('password'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('password') }}
+                                            </span>
+                                        @endif
+                                    </x-input>
+                                    @error('password')
+                                        <span class="text-red-900" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
-
- 
+                                    @enderror
                                 </div>
-                            </div>
-                            <!-- New Password -->
+                            
+                                <!-- New Password -->
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col">
-                                    <label class="form-label text-capitalize" id="confirm-password" for="password_confirmation">
-                                        confirm password *
+                                <div class="mt-2">
+                                        
+                                    <label for="password_confirmation">
+                                        {{ __('Confirm Password *') }} 
                                     </label>
-                                    <input 
-                                    class="form-control form-control-sm
-                                    {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" 
+
+                        
+                                    <x-input 
+                                    class="{{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" 
                                     type="password" 
                                     minlength="8" 
                                     maxlength="8" 
                                     name="password_confirmation"
-                                    required=""
+                                    
                                     placeholder="confirm password" 
                                     name="password">
+                                    </x-input>
+                                    @error('password')
+                                        <span class="text-red-900" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                            </div>
-                            <!-- confirm Password -->
+                            
+                                <!-- confirm Password -->
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col d-grid">
+                            
+                                <div class="mt-2">
                                     <button 
-                                        class="btn text-uppercase" 
-                                        type="submit">
-                                        <i class="fas fa-save"></i>
-                                        &nbsp;update
+                                        class="w-full bg-green-400 p-1 capitalize
+                                        text-white hover:bg-green-500
+                                            rounded-full"                                        
+                                            type="submit">
+                                        {{ __('Update') }}
                                     </button>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        
 @endsection
 
 

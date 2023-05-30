@@ -1,23 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Login') 
 @section('content')
-            <div class="flex">
-                <div class="mx-auto w-7/12  mt-24 mb-24">
-                    <h1 class="text-center text-3xl">
-                        login
-                    </h1>
-                    <div class="mx-auto lg:w-2/6">
-
+            <div class="grid-rows-1 mt-44">
+                <div class="container mx-auto">
+                    
+                    <div class="w-50 mx-auto  max-w-screen-md p-7">
+                        <h2 class="mb-5 text-center capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                        {{ __('login') }} 
+                        </h2>
                         <form 
                             method="POST" 
-                            action="{{ route('login') }}"
-                            class="mt-4 border-0 bg-gray-200 p-5">
+                            action="{{ route('login') }}">
                             @csrf
 
-                                <div class="mt-2">
+                                <div class="flex flex-col p-5">
                                  
-                                    <label for="email">
-                                    {{ __('Email Address') }} 
+                                    <label for="email" class="uppercase mt-4">
+                                    {{ __('Email Address *') }} 
                                     </label>
                                    
                                     <x-input
@@ -26,7 +25,8 @@
                                     value="{{ old('email') }}"
                                     autocomplete="email"
                                     autofocus
-                                    placeholder="admin@admin.com" >
+                                    placeholder="admin@admin.com" 
+                                    class="border-2 rounded-lg">
                                         
                                     </x-input>
                                     @error('email')
@@ -34,13 +34,10 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-                                <!-- Email -->
+                                    <!-- email -->
 
-                            <div class="mt-2">
-                                <div class="col">
-                                    <label for="password">
-                                    {{ __('Password') }} 
+                                    <label for="password" class="mt-4">
+                                    {{ __('Password *') }} 
                                     </label>
                                   
                                     <x-input
@@ -49,51 +46,42 @@
                                     autocomplete="current-password"
                                     autofocus
                                     value="{{ old('email') }}"
-                                    placeholder="password" >
-                                        
+                                    placeholder="password" 
+                                    class="border-2 rounded-lg">
+                                    
                                     </x-input>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-                            </div>
-                            <!-- Password -->
+                                    <!-- password -->
 
-                            <div class="mt-2">
-                                
-                                <input 
-                                    type="checkbox" 
-                                    name="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
-                                <label  for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                            <!-- Remember -->
-                          
-                            <div class="mt-2">
-                                <div>
-                                    @if (Route::has('password.request'))
-                                    <a class="capitalize" 
-                                        href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}?
-                                    </a>
-                                    @endif
-                                </div>
-                            </div>
-                            <!-- Reset email -->
+                                    <div class="mt-4">
+                                        <input type="checkbox"   name="remember" class="border-2 rounded-lg" {{ old('remember') ? 'checked' : '' }}>
+                                        <label for="" class="mt-4"  for="remember">
+                                        {{ __('Remember Me') }}
+                                        </label>
+                                    </div>
+                                    <!-- remember me -->
 
-                                <div class="mt-2">
-                                    <button 
-                                        class="w-full bg-green-900 p-1 capitalize
-                                         text-white hover:bg-green-800
-                                         rounded-full"                                        
-                                         type="submit">
+                                    <div class="mt-4">
+                                        @if (Route::has('password.request'))
+                                        <a class="capitalize" 
+                                            href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                        @endif
+                                    </div>
+                                    <!-- forget password -->
+
+                                    <button class="border-0 rounded-lg bg-green-400 p-1 hover:bg-green-500
+                                         text-gray-50
+                                        capitalize mt-2">
                                         {{ __('Login') }}
                                     </button>
                                 </div>
+                            
                         </form>
                     </div>
                 </div>

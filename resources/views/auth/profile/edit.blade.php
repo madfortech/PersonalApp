@@ -1,71 +1,65 @@
 @extends('layouts.app')
 @section('title', 'Edit Profile') 
 @section('content')
-        <!-- Start: 1 Row 2 Columns -->
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-md-6">
-                    <div>
-                        <h2 class="text-uppercase mt-2 h2-title">
-                            edit profile
+            <div class="grid-rows-1 mt-44">
+                <div class="container mx-auto">
+                    
+                    <div class="w-50  max-w-screen-md p-7">
+                        <h2 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                        {{ __('update profile') }} 
                         </h2>
+                        
+                        @if (session('success'))
+                        <div class="text-green-50 p-2 mt-2 bg-green-800 rounded-full">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
                         <form 
-                            class="mb-2 form p-2" 
-                            method="post" 
-                            action="{{ route("profile.profile.update") }}"
-                            enctype="multipart/form-data">
+                            method="POST" 
+                            action="{{ route('profile.update') }}">
                             @csrf
-                            <div class="row gx-0 mb-2">
-                                    @if(Session::has('success'))
-                                        <div class="alert alert-success">
-                                        {{Session::get('success')}}
-                                        </div>
-                                    @endif
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="email">
-                                        email
-                                    </label>
-                                    <input 
-                                    class="form-control form-control-sm
-                                    {{ $errors->has('email') ? 'is-invalid' : '' }}" 
-                                    type="email" 
-                                    name="email" 
-                                    value="{{ old('email', auth()->user()->email) }}"
-                                    disabled>
-                                </div>
-                            </div>
-                            <!-- email -->
+                           
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col">
-                                    <label class="form-label text-capitalize" for="name">
-                                        name
+                                <div class="flex flex-col p-5">
+                                    
+                                    <label for="name" class="uppercase mt-4">
+                                    {{ __('Name') }} 
                                     </label>
-                                    <input 
-                                    class="form-control form-control-sm
-                                    {{ $errors->has('name') ? 'is-invalid' : '' }}" 
-                                    type="text" 
-                                    name="name" 
-                                    value="{{ old('name', auth()->user()->name) }}">
-                                  
-                                </div>
-                            </div>
-                            <!-- name -->
+                                    
+                                    <x-input
+                                        type="text"
+                                        name="name"
+                                        value="{{ old('name', auth()->user()->name) }}"
+                                        class="border-2 rounded-lg"> 
+                                    </x-input>
+                                    <!-- Name -->
 
-                            <div class="row gx-0 mb-2">
-                                <div class="col d-grid">
-                                    <button 
-                                        class="btn text-uppercase" 
-                                        type="submit">
-                                        <i class="fas fa-save"></i>
-                                        &nbsp;update
+
+                                    <label for="email" class="uppercase mt-4">
+                                    {{ __('Email Address') }} 
+                                    </label>
+                                   
+                                    <x-input
+                                        type="email"
+                                        name="email"
+                                        readonly=""
+                                        class="border-2 rounded-lg"
+                                        value="{{ old('email', auth()->user()->email) }}"> 
+                                    </x-input>
+                                    <!-- Email -->
+
+                                    <button class="border-0 rounded-lg bg-green-400 hover:bg-green-500
+                                        p-1 text-gray-50
+                                        capitalize mt-2">
+                                        {{ __('Save') }}
                                     </button>
+
                                 </div>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End: 1 Row 2 Columns -->
+        
 @endsection

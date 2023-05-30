@@ -1,4 +1,54 @@
 old migration file name
+2022_02_10_094924_add_blogposts_id_post_image_column
+2021_07_31_084720_create_blog_posts_table
+2022_02_10_094924_add_blogposts_id_post_image_column
+2022_10_05_000047_add_user_id_to_posts_table
+2022_10_05_000047_add_user_id_to_posts_table
+//
+2022_02_10_094924_add_blogposts_id_post_image_column
+        // Schema::create('blog_posts', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('description');
+        //     $table->timestamps();
+        //     $table->softDeletes();
+        // });
+//
+
+2022_10_01_080339_create_categories_table
+///
+2022_10_02_230805_create_general_privacy_terms
+    // Schema::drop('siteprivacy', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('description');
+        //     $table->timestamps();
+        // });
+
+        // Schema::drop('siteterms', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('description');
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
+
+        // Schema::drop('general', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('description');
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
+
+        // Schema::drop('siteheader', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('description');
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
+///
 
 seeder file name
 class blogPostSeeder extends Seeder

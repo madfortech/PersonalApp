@@ -1,23 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Register') 
 @section('content')
-            <div class="flex">
-                <div class="mx-auto w-7/12  mt-24 mb-24">
-                    <h1 class="text-center text-3xl">
-                        register
-                    </h1>
-                    <div class="mx-auto lg:w-2/6">
-
+            <div class="grid-rows-1 mt-44">
+                <div class="container mx-auto">
+                    
+                    <div class="w-50 mx-auto  max-w-screen-md p-7">
+                        <h1 class="mb-5 text-center capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                            {{ __('register') }} 
+                        </h1>
                         <form 
                             method="POST" 
-                            action="{{ route('register') }}"
-                            class="mt-4 border-0 bg-gray-200 p-5">
+                            action="{{ route('register') }}">
                             @csrf
 
-                                <div class="mt-2">
+                                <div class="flex flex-col p-5">
                                 
-                                    <label for="name">
-                                        {{ __('Name') }}
+                                    <label for="name" class="uppercase mt-4">
+                                        {{ __('Name *') }}
                                     </label>
                                     
                                     <x-input
@@ -25,6 +24,7 @@
                                         value="{{ old('name') }}"
                                         placeholder="full name"
                                         autocomplete="name"
+                                        class="border-2 rounded-lg"
                                         autofocus>
                                     </x-input>
                                     
@@ -33,21 +33,18 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <!-- name -->
 
-                                </div>
-                                <!-- name -->
-
-                                <div class="mt-2">
-                               
-                                    <label  for="email">
-                                        {{ __('Email Address') }}
+                                    <label  for="email" class="mt-4">
+                                        {{ __('Email Address *') }}
                                     </label>
                                     <x-input
                                         type="email" 
                                         name="email" 
                                         value="{{ old('email') }}"
                                         placeholder="admin@admin.com"
-                                        autocomplete="email">
+                                        autocomplete="email"
+                                        class="border-2 rounded-lg">
 
                                     </x-input>
                                    
@@ -56,22 +53,18 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
- 
-                                </div>
-                            
-                                <!-- email -->
+                                    <!-- email -->
 
-                                <div class="mt-2">
-                                 
-                                    <label  for="password">
-                                        {{ __('Password') }}
+                                    <label  for="password" class="mt-4">
+                                        {{ __('Password *') }}
                                     </label>
                                     <x-input
                                         type="password" 
                                         name="password" 
                                         value="{{ old('password') }}"
                                         placeholder="new password"
-                                        autocomplete="new-password">
+                                        autocomplete="new-password"
+                                        class="border-2 rounded-lg">
 
                                     </x-input>
                                     
@@ -80,38 +73,29 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                
-                                </div>
-                                <!-- password -->
+                                    <!-- password -->
 
-                                <div class="mt-2">
-                                 
-                                    <label for="password-confirm" >
+                                    <label for="password-confirm" class="mt-4">
                                         {{ __('Confirm Password') }}
                                     </label>
                                     <x-input
                                         type="password" 
                                         name="password_confirmation" 
                                         placeholder="password confirmation"
-                                        autocomplete="new-password">
-
+                                        autocomplete="new-password"
+                                        class="border-2 rounded-lg">
                                     </x-input>
+                                    <!-- confirm password -->
+
                                     
-                                </div>
-                                <!-- confirm password -->
-
-                                    <div class="mt-2">
-                                     
-                                        <button 
-                                            type="submit"
-                                            class="w-full bg-green-900 p-1 capitalize
-                                            text-white hover:bg-green-800
-                                            rounded-full">
-                                                {{ __('Register') }}
-                                        </button>
-                                    </div>
-
-                          
+                                    <button class="border-0 rounded-lg bg-green-400 p-1 
+                                    hover:bg-green-500
+                                    text-gray-50
+                                        capitalize mt-2">
+                                        {{ __('Register') }}
+                                    </button>
+                                    
+                                </div>          
                         </form>
                     </div>
                 </div>

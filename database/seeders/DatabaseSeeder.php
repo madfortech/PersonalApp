@@ -1,8 +1,6 @@
 <?php
-
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,12 +14,7 @@ class DatabaseSeeder extends Seeder
         //\App\Models\Blogpost::factory(100)->create();
 
         $this->call([
-           // UserSeeder::class,
-            //PermissionRoleTableSeeder::class,
-            //PermissionsTableSeeder::class,
-            //RolesTableSeeder::class,
-            //RoleUserTableSeeder::class,
-            //blogPostSeeder::class,
+           //RolesAndPermissionsSeeder::class, 
         ]);
 
     }

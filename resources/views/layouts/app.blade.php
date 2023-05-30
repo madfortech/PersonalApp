@@ -26,18 +26,35 @@
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&display=swap'); 
     </style>
 
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    
+ 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+    <style>
+        body{
+            font-family: 'Delicious Handrawn', cursive;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+    </style>
 
 </head>
 
-<body class="bg-slate-300">
+<body class="bg-gray-300">
     @include('layouts.nav')
 
-    <main class="py-2">
-        <!-- Start: 1 Row 2 Columns -->
-            @yield('content')
-        <!-- End: 1 Row 2 Columns -->
+    <main>
+       @yield('content')
     </main>
-    <!--End Main Comment-->
+ 
+   
+     @yield('scripts')
 </body>
 </html>

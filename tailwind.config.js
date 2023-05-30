@@ -6,7 +6,13 @@ module.exports = {
       "./resources/**/*.vue",
     ],
     theme: {
-      extend: {},
+      extend: {
+        fontWeight: {
+          normal: '400',
+          bold: '700',
+          extrabold: '800',
+        }
+      },
     },
     plugins: [],
   }

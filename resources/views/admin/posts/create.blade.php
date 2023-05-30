@@ -1,162 +1,92 @@
-@extends('layouts.admin')
+@extends('layouts.app')
+@section('title', 'Post Create') 
 @section('content')
-                            <!-- Start Form Here -->
-                            <h3 class="text-dark mb-4">
-                                Add New Post
-                            </h3>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card shadow mb-3">
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">
-                                                Create new post
-                                            </p>
-                                        </div>
-                                        <div class="card-body">
-                                            <form 
-                                                action="{{ route("admin.posts.store") }}"
-                                                enctype="multipart/form-data" 
-                                                method="post">
-                                               
-                                                @csrf
-                                                <div class="row gx-1 gy-1">
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="username">
-                                                                <strong>Title</strong>
-                                                            </label>
-                                                            <input 
-                                                                class="form-control form-control-sm rounded-0
-                                                                {{ $errors->has('title') ? 'is-invalid' : '' }}" 
-                                                                type="text" id="title" 
-                                                                name="title" 
-                                                                placeholder="title"> 
-                                                               
-                                                                @if($errors->has('title'))
-                                                                <span class="text-danger">
-                                                                    {{ $errors->first('title') }}
-                                                                </span>
-                                                                @endif
+            <div class="grid-rows-1 mt-44">
+                <div class="container mx-auto">
+                    
+                    <div class="w-50  max-w-screen-md p-7">
+                        <h2 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                        {{ __('post create') }} 
+                        </h2>
+                        
+                        @if (session('success'))
+                        <div class="text-green-50 p-2 mt-2 bg-green-800 rounded-full">
+                            {{ session('success') }}
+                        </div>
+                        @endif
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Title Field -->
-                                            
-                                                <div class="row gx-1 gy-1">
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="categories">
-                                                                <strong>Category&nbsp;</strong>
-                                                            </label>
-                                                            <a class="text-decoration-none" 
-                                                                href="{{ route('admin.categories.create') }}">
-                                                                create
-                                                            </a>
-                                                            <select class="form-select form-select-sm rounded-0" 
-                                                                name="categories">
-                                                                <option value="13">This is item 2</option>
-                                                                <option value="14">This is item 3</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Categories Field -->
+                        <form 
+                            method="POST" 
+                            action="{{ route('admin.posts.store') }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                           
 
-                                                <div class="row gx-1 gy-1">
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="tags">
-                                                                <strong>Tags&nbsp;</strong>
-                                                            </label>
-                                                            <a class="text-decoration-none"
-                                                                href="{{ route('admin.tags.create') }}">
-                                                                create
-                                                            </a>
-                                                            <select class="form-select form-select-sm rounded-0" 
-                                                                name="tags">
-                                                                <option value="13">This is item 2</option>
-                                                                <option value="14">This is item 3</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Tags field -->
+                                <div class="flex flex-col p-5">
+                                    
+                                    <label for="title" class="mt-4">
+                                    {{ __('Title *') }} 
+                                    </label>
+                                    
+                                    <x-input
+                                    type="text"
+                                    name="title"
+                                    class="border-2 rounded-lg"
+                                    placeholder="title"> 
+                                    </x-input>
+                                    @if($errors->has('title'))
+                                        <span class="text-red-900">
+                                            {{ $errors->first('title') }}
+                                        </span>
+                                    @endif
+                                    <!-- title -->
 
-                                                <div class="row gx-1 gy-1">
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="avatar">
-                                                                <strong>Add media</strong>
-                                                            </label>
-                                                            <div 
-                                                                class="needsclick dropzone 
-                                                                {{ $errors->has('avatar') ? 'is-invalid' : '?' }}" 
-                                                                id="avatar-dropzone">
-                                                            </div>
-                                                            @if($errors->has('avatar'))
-                                                                <span class="text-danger">
-                                                                    {{ $errors->first('avatar') }}
-                                                                </span>
-                                                            @endif
-                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Add media field -->
+                                    <label for="avatar" class="mt-4">
+                                        {{ __('Avatar *') }} 
+                                    </label>
+                                    
+                                    <x-input
+                                        type="file"
+                                        name="avatar"
+                                        class="border-2 rounded-lg"> 
+                                    </x-input>
+                                    
+                                    @if($errors->has('avatar'))
+                                        <span class="text-red-900">
+                                            {{ $errors->first('avatar') }}
+                                        </span>
+                                    @endif
+                                    <!-- avatar -->
 
-                                                <div class="row gx-1 gy-1">
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="description">
-                                                                <strong>Description</strong>
-                                                            </label>
-                                                            <x-easy-mde 
-                                                                name="description"
-                                                                placeholder="write post here">
-                                                                
-                                                            </x-easy-mde>
-                                                            @if($errors->has('description'))
-                                                                <span class="text-danger">
-                                                                    {{ $errors->first('description') }}
-                                                                </span>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- description field -->
 
-                                                <div class="mb-3">
-                                                    <button 
-                                                        class="btn btn-primary btn-sm rounded-0 border-0" 
-                                                        type="submit">
-                                                        <i class="fas fa-plus"></i>
-                                                        &nbsp;Post
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                    <label for="description" class="mt-4">
+                                        {{ __('Description *') }} 
+                                    </label>
+                                  
+                                    <textarea name="description" 
+                                        id="description" 
+                                        class="border-2 rounded-lg"
+                                        cols="30" rows="5">
+
+                                    </textarea>
+                                    @if($errors->has('description'))
+                                        <span class="text-red-900">
+                                            {{ $errors->first('description') }}
+                                        </span>
+                                    @endif
+                                    <!-- description -->
+
+                                    <button class="border-0 rounded-lg bg-green-400 hover:bg-green-500
+                                        p-1 text-gray-50
+                                        capitalize mt-2">
+                                        {{ __('Save') }}
+                                    </button>
+
                                 </div>
-                            </div>
-                            <!-- End Form -->
-
-                            <!-- Footer -->
-                            <footer class="bg-white sticky-footer">
-                                <div class="container my-auto">
-                                    <div class="text-center my-auto copyright">
-                                        <span>Copyright © AdminPanel 2022</span>
-                                    </div>
-                                </div>
-                            </footer>
-                            <!-- End Footer -->
-                             
-                            <a class="border rounded d-inline scroll-to-top" href="#page-top">
-                                <i class="fas fa-angle-up"></i>
-                            </a>
-
-
-
-
-
+                        </form>
+                    </div>
+                </div>
+            </div>
 @endsection
-@section('scripts')
+
+ 

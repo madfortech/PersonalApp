@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Auth\ChangePasswordControler;
-use App\Http\Controllers\Auth\EditProfileController;
-use App\Http\Controllers\UsersController;
-
-// https://hdtuto.com/article/laravel-8-spatie-roles-and-permissions-tutorial
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Models\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,21 +20,10 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return View('welcome');
+    $posts = Post::latest()->get();
+    return view('welcome', compact('posts'));
 });
 
-Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth','verified']], function () {
-    // Change Password
-    if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
-        Route::get('password', [App\Http\Controllers\Auth\ChangePasswordController::class, 'edit'])->name('password.edit');
-        Route::post('password',  [App\Http\Controllers\Auth\ChangePasswordController::class, 'update'])->name('password.update');
-    }
-    // Edit Profile
-    if (file_exists(app_path('Http/Controllers/Auth/EditProfileController.php'))) {
-        Route::get('profile', [App\Http\Controllers\Auth\EditProfileController::class, 'edit'])->name('profile.edit');
-        Route::post('profile',  [App\Http\Controllers\Auth\EditProfileController::class, 'update'])->name('profile.update');
-    }
-});
 
 Auth::routes(
     [
@@ -43,13 +33,37 @@ Auth::routes(
     ]
 );
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
-    ->name('home')
-    ->middleware(['auth','verified']);
+Route::group([
+    'prefix' => 'admin', 
+    'as' => 'admin.', 
+    'namespace' => 'Admin', 
+    'middleware' => ['auth', 'role:super-admin'] // <= This is our new middleware
+], function () {
+    Route::get('admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])
+    ->name('admin.home');
+    // Post Routes
+    Route::resource('admin/posts', PostController::class)
+    ->only(['store','create','update','edit','destroy']);
+});	
 
-Route::group(['middleware' => ['auth']], function() {
+   
+    Route::get('admin/posts/show/{post}', [App\Http\Controllers\Admin\PostController::class, 'show'])
+    ->name('posts.show');
 
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
 
-});
+Route::group([
+    'middleware' => ['auth'] // <= This is our new middleware
+], function () {
+    // Setting
+    Route::get('/account', [App\Http\Controllers\SettingController::class, 'index'])
+    ->name('account.index');
+    // Profile
+    Route::get('admin/admin/profile', [App\Http\Controllers\ProfileController::class, 'edit'])
+    ->name('profile.edit');
+    Route::post('admin/profile', [App\Http\Controllers\ProfileController::class, 'update'])
+    ->name('profile.update');
+    // Password
+    Route::get('passwords', [App\Http\Controllers\Auth\ChangePasswordController::class, 'edit'])
+    ->name('password.edit');
+});	
+

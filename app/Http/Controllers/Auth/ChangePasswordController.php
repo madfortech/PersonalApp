@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePasswordRequest;
+
 class ChangePasswordController extends Controller
 {
     public function edit()
@@ -15,9 +16,9 @@ class ChangePasswordController extends Controller
     {
         auth()->user()->update($request->validated());
 
-        return redirect()->route('profile.password.edit')
+        return redirect()
+            ->route('password.edit')
             ->with('success', ('Password updated successfully'));
     }
-
 
 }
