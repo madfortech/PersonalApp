@@ -19,24 +19,23 @@ class PostRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function rules()
     {
         return [
             'title' => [
-                'string',
                 'required',
             ],
+
             'description' => [
-                'string',
                 'required',
             ],
+
             'avatar' => [
-                'required'
+                'mimetypes:video/mp4,video/avi|file|mp3|jpg|png|PNG',
             ],
+        
         ];
     }
-
-    
 }

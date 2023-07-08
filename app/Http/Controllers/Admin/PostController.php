@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-
+use Illuminate\Contracts\View\View;
 
 class PostController extends Controller
 {
+    public function index(): View
+    {
+      
+        return view('admin.posts.index', [
+            'posts' => Post::with('user')->latest()->get(),
+        ]);
+    }
 
     public function create()
     {
@@ -17,8 +25,12 @@ class PostController extends Controller
 
     public function store(PostRequest $request){
 
-        $post = Post::create($request->all());
-
+        $post = new Post($request->all());
+        $post->user_id = auth()->user()->id;
+        $slug = Str::slug($request->input('title'));
+        $post->slug = $slug;
+        $post->save();
+      
         if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
             $post->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         }
@@ -27,8 +39,10 @@ class PostController extends Controller
         ->with('success', 'Post created success!');
     }
 
-    public function show(Post $post)
+    public function show(Post $post, $slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
         return view('admin.posts.show', compact('post'));
     }
 
@@ -54,9 +68,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()
-        ->back()
-        ->with('success', 'Post delete successfully!');
+        return redirect(route('admin.admin.home'));
     }
 
 

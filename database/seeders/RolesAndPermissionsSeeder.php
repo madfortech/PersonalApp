@@ -16,6 +16,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user = \App\Models\User::factory()->create([
             'name' => 'super-admin',
             'email' => 'admin@example.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('password'),
         ]);
         $user->assignRole($role)->givePermissionTo(Permission::all());

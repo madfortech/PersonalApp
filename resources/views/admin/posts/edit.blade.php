@@ -1,38 +1,36 @@
 @extends('layouts.app')
 @section('title', 'Post Edits') 
 @section('content')
-            <div class="grid-rows-1 mt-44">
-                <div class="container mx-auto">
+                <div class="grid-rows-1 mt-20">
+                    <div class="container mx-auto">
                     
-                    <div class="w-50  max-w-screen-md p-7">
-                        <h2 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
-                        {{ __('post edit') }} 
-                        </h2>
-                        
-                        @if (session('success'))
-                        <div class="text-green-50 p-2 mt-2 bg-green-800 rounded-full">
-                            {{ session('success') }}
-                        </div>
-                        @endif
+                        <div class="w-50  max-w-screen-md p-7">
+                            <h2 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                            {{ __('post edit') }} 
+                            </h2>
+                            @if (session('success'))
+                            <div class="text-green-50 p-2 mb-2 bg-green-800 rounded-full">
+                                {{ session('success') }}
+                            </div>
+                            @endif
 
-                        <form 
-                            method="POST" 
-                            action="{{ route('admin.posts.update', ['post' => $post->id]) }}"
-                            enctype="multipart/form-data">
+                            <form 
+                                method="POST" 
+                                action="{{ route('admin.posts.update', ['post' => $post->id]) }}"
+                                enctype="multipart/form-data">
                               
                                 @csrf
                                 @method('PUT')
-
-                                <div class="flex flex-col p-5">
+                                @honeypot
+                                <div class="mb-2">
                                     
-                                    <label for="title" class="mt-4">
+                                    <label for="title">
                                     {{ __('Title') }} 
                                     </label>
                                     
                                     <x-input
                                     type="text"
                                     name="title"
-                                    class="border-2 rounded-lg"
                                     value="{{ old('title', $post->title) }}"> 
                                     </x-input>
                                     @if($errors->has('title'))
@@ -40,16 +38,18 @@
                                             {{ $errors->first('title') }}
                                         </span>
                                     @endif
-                                    <!-- title -->
+                                </div>
+                                <!-- title -->
 
-                                    <label for="avatar" class="mt-4">
+                                <div class="mb-2">
+
+                                    <label for="avatar">
                                         {{ __('Avatar') }} 
                                     </label>
                                     
                                     <x-input
                                         type="file"
-                                        name="avatar"
-                                        class="border-2 rounded-lg"> 
+                                        name="avatar"> 
                                     </x-input>
                                     
                                     @if($errors->has('avatar'))
@@ -57,17 +57,21 @@
                                             {{ $errors->first('avatar') }}
                                         </span>
                                     @endif
-                                    <!-- avatar -->
+                                </div>
+                                <!-- avatar -->
 
+                                <div class="mb-2">
 
-                                    <label for="description" class="mt-4">
+                                    <label for="description">
                                         {{ __('Description') }} 
                                     </label>
                                   
-                                    <textarea name="description" 
+                                    <textarea 
+                                        name="description" 
                                         id="description" 
-                                        class="border-2 rounded-lg"
-                                        cols="30" rows="5">
+                                        cols="30" 
+                                        rows="5"
+                                        class="form-textarea w-full">
                                         {{ old('description', $post->description) }}
                                     </textarea>
                                     @if($errors->has('description'))
@@ -75,19 +79,18 @@
                                             {{ $errors->first('description') }}
                                         </span>
                                     @endif
-                                    <!-- description -->
-
-                                    <button class="border-0 rounded-lg bg-green-400 hover:bg-green-500
-                                        p-1 text-gray-50
-                                        capitalize mt-2">
-                                        {{ __('Update') }}
-                                    </button>
-
                                 </div>
-                        </form>
+                                <!-- description -->
+
+                                <div class="mb-2">
+                                    <x-button>
+                                        {{ __('Update') }}
+                                    </x-button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 @endsection
 
  

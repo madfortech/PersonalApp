@@ -1,21 +1,26 @@
 @extends('layouts.app')
 @section('title', 'Register') 
 @section('content')
-            <div class="grid-rows-1 mt-44">
-                <div class="container mx-auto">
-                    
-                    <div class="w-50 mx-auto  max-w-screen-md p-7">
-                        <h1 class="mb-5 text-center capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
-                            {{ __('register') }} 
-                        </h1>
-                        <form 
-                            method="POST" 
-                            action="{{ route('register') }}">
-                            @csrf
+            
+                <div class="flex mb-4">
 
-                                <div class="flex flex-col p-5">
+                    <div class="w-full bg-grey h-12">
+
+                        
+                        <div class="w-1/2  max-w-xs mx-auto mt-10">
+                            <h1 class="mb-5 text-center capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                                {{ __('register') }} 
+                            </h1>
+
+                            <form 
+                                method="POST" 
+                                action="{{ route('register') }}"
+                                class="bg-teal-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                                @csrf
+
+                                <div class="mb-4">
                                 
-                                    <label for="name" class="uppercase mt-4">
+                                    <label for="name">
                                         {{ __('Name *') }}
                                     </label>
                                     
@@ -24,7 +29,6 @@
                                         value="{{ old('name') }}"
                                         placeholder="full name"
                                         autocomplete="name"
-                                        class="border-2 rounded-lg"
                                         autofocus>
                                     </x-input>
                                     
@@ -33,9 +37,12 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <!-- name -->
+                                </div>
+                                <!-- name -->
+                                
+                                <div class="mb-4">
 
-                                    <label  for="email" class="mt-4">
+                                    <label  for="email">
                                         {{ __('Email Address *') }}
                                     </label>
                                     <x-input
@@ -43,8 +50,7 @@
                                         name="email" 
                                         value="{{ old('email') }}"
                                         placeholder="admin@admin.com"
-                                        autocomplete="email"
-                                        class="border-2 rounded-lg">
+                                        autocomplete="email">
 
                                     </x-input>
                                    
@@ -53,9 +59,12 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <!-- email -->
+                                </div>
+                                <!-- email -->
 
-                                    <label  for="password" class="mt-4">
+                                <div class="mb-4">
+
+                                    <label  for="password">
                                         {{ __('Password *') }}
                                     </label>
                                     <x-input
@@ -63,8 +72,7 @@
                                         name="password" 
                                         value="{{ old('password') }}"
                                         placeholder="new password"
-                                        autocomplete="new-password"
-                                        class="border-2 rounded-lg">
+                                        autocomplete="new-password">
 
                                     </x-input>
                                     
@@ -73,7 +81,10 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <!-- password -->
+                                </div>
+                                <!-- password -->
+
+                                <div class="mb-4">
 
                                     <label for="password-confirm" class="mt-4">
                                         {{ __('Confirm Password') }}
@@ -82,22 +93,19 @@
                                         type="password" 
                                         name="password_confirmation" 
                                         placeholder="password confirmation"
-                                        autocomplete="new-password"
-                                        class="border-2 rounded-lg">
+                                        autocomplete="new-password">
                                     </x-input>
-                                    <!-- confirm password -->
+                                </div>
+                                <!-- confirm password -->
 
+                                <div class="mb-4">
                                     
-                                    <button class="border-0 rounded-lg bg-green-400 p-1 
-                                    hover:bg-green-500
-                                    text-gray-50
-                                        capitalize mt-2">
+                                    <x-button>
                                         {{ __('Register') }}
-                                    </button>
-                                    
+                                    </x-button>
                                 </div>          
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 @endsection

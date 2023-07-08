@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'section') </title>
-    <meta name="theme-color" content="rgb(162,210,255)">
+    <!-- <meta name="theme-color" content="rgb(162,210,255)">
     <meta name="twitter:title" content="Personal App ">
     <meta name="twitter:description" content="Description goes here">
     <meta name="twitter:card" content="summary">
@@ -16,8 +16,11 @@
     <meta property="og:type" content="website">
     <meta property="og:description" content="Description goes here">
     <meta property="og:title" content="Personal App ">
-    <meta name="description" content="description goes here ">
-     
+    <meta name="description" content="description goes here "> -->
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    {!! JsonLd::generate() !!}
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Styles -->
@@ -26,24 +29,25 @@
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&display=swap'); 
     </style>
 
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;500;600;700&display=swap" rel="stylesheet">
+        
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/fc6a0e04dd.js" crossorigin="anonymous"></script>
+
     
- 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
     <style>
         body{
-            font-family: 'Delicious Handrawn', cursive;
-            font-family: 'Nanum Gothic', sans-serif;
+            font-family: 'Roboto Mono', monospace;
         }
     </style>
+
+    @include('feed::links')
 
 </head>
 
@@ -55,6 +59,6 @@
     </main>
  
    
-     @yield('scripts')
-</body>
+    @yield('scripts')
+ </body>
 </html>

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique()->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->longText('description');
             $table->timestamps();
         });

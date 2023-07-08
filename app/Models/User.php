@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use \DateTimeInterface;
-use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable  
+
+class User extends Authenticatable 
 {
 
     use 
@@ -37,7 +38,6 @@ class User extends Authenticatable
         'email_verified_at',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     
@@ -50,7 +50,6 @@ class User extends Authenticatable
         'remember_token',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     /**
@@ -73,17 +72,15 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
-    public function setPasswordAttribute($input)
-    {
-        if ($input) {
-            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
-        }
-    }
     
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
     }
     
-  
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+    
 }

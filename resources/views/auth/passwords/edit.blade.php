@@ -1,26 +1,26 @@
 @extends('layouts.app')
 @section('title', 'Change Password') 
 @section('content')
-            <div class="grid-rows-1 mt-44">
-                <div class="container mx-auto">
+                <div class="grid-rows-1 mt-20">
+                    <div class="container mx-auto">
                     
-                    <div class="w-50  max-w-screen-md p-7">
-                        <h1 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
-                        {{ __('update password') }} 
-                        </h1>
+                        <div class="w-50  max-w-screen-md p-7">
+                            <h1 class="mb-5 text-left capitalize first-letter:text-6xlxl text-3xl first-letter:font-bold first-letter:bg-green-500">
+                            {{ __('update password') }} 
+                            </h1>
 
-                        @if (session('success'))
-                        <div class="text-green-50 p-2 mt-2 bg-green-800 rounded-full">
-                            {{ session('success') }}
-                        </div>
-                        @endif
+                            @if (session('success'))
+                            <div class="text-green-50 p-2 mb-2 bg-green-800 rounded-full">
+                                {{ session('success') }}
+                            </div>
+                            @endif
                         
-                        <form 
-                            class="mt-4 border-0 bg-gray-200 p-5"
-                            method="post" 
-                            action="{{ route("password.update") }}"
-                            enctype="multipart/form-data">
-                            @csrf
+                            <form 
+                                class="bg-teal-100 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                                method="post" 
+                                action="{{ route("password.update") }}"
+                                enctype="multipart/form-data">
+                                @csrf
 
                                 
                                 @if(Session::has('success'))
@@ -28,7 +28,7 @@
                                         {{Session::get('success')}}
                                     </div>
                                 @endif
-                                <div class="mt-2">
+                                <div class="mb-2">
                                      
                                     <label for="password">
                                     {{ __('Password *') }} 
@@ -57,7 +57,7 @@
                             
                                 <!-- New Password -->
 
-                                <div class="mt-2">
+                                <div class="mb-2">
                                         
                                     <label for="password_confirmation">
                                         {{ __('Confirm Password *') }} 
@@ -84,19 +84,15 @@
                                 <!-- confirm Password -->
 
                             
-                                <div class="mt-2">
-                                    <button 
-                                        class="w-full bg-green-400 p-1 capitalize
-                                        text-white hover:bg-green-500
-                                            rounded-full"                                        
-                                            type="submit">
+                                <div class="mb-2">
+                                    <x-button type="submit">
                                         {{ __('Update') }}
-                                    </button>
+                                    </x-button>
                                 </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
         
 @endsection
 

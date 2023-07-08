@@ -1,52 +1,60 @@
 @extends('layouts.app')
-@section('title', 'Single Post') 
+@section('title', 'Post') 
 @section('content')
 
-       <div class="grid-cols-1 gap-4 text-gray-900 md:grid">
-            
-              <div class="lg:w-2/4 mx-auto mt-40">
-                    
-                     <div class="rounded-lg border p-2 md:w-auto mb-4">
-                             
-                            <img src="{{$post->getFirstMediaUrl('avatars','preview') }}" 
-                                   alt="{{('$post->id')}}"
-                                   class="w-full">
+              <div class="lg:flex flex-row mb-4">
 
-                            <h1 class="text-lg font-bold mt-4">
-                            {{ $post->title }} 
-                            </h1>
-                            <article class="leading-loose text-2xl py-3 whitespace-pre-line 
-                                   ">
-                                   {{ $post->description }} 
-                            </article>
-                            @role('super-admin')
-                                   <a   class="border-0 rounded-lg bg-green-400 hover:bg-green-500
-                                        p-1 text-gray-50
-                                        capitalize mt-2"
-                                        href="{{route('admin.posts.edit', ['post' => $post->id]) }}">
-                                        edit
-                                   </a>
-                            @endrole
+                     <div class="basis-3/4 bg-teal-50 shadow-lg mx-auto">
+                            <div class="p-2 border-b-4 mt-10 mb-20">
+                                   <div class="aspect-w-16 aspect-h-9">
+                                          <iframe 
+                                                 src="{{$post->getFirstMediaUrl('avatars','preview') }}" 
+                                                 frameborder="0" 
+                                                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                                 allowfullscreen
+                                                 alt="{{('$post->id')}}">
+                                          </iframe>
+                                   </div>
+                            </div>
 
-                            @role('super-admin')
-                            <form action="{{ route('admin.posts.destroy', $post->id) }}"
-                                   method="POST" 
-                                   onsubmit="return confirm('{{ trans('global.areYouSure') }}');">
-                                   @csrf
-                                   @method('DELETE')
-                                   <button class="border-0 rounded-lg bg-red-400 hover:bg-red-500
-                                        p-1 text-gray-50
-                                        capitalize mt-2">
-                                        {{ __('Delete') }}
-                                   </button>                                   
-                            </form>
-                            @endrole
-         
+                            <div class="px-6 py-4">
+                                   <div class="font-bold text-xl mb-2">
+                                          {{ $post->title }} 
+                                   </div>
+                                   <p class="text-grey-darker text-base">
+                                          {{($post->description) }}
+                                   </p>
+                            </div>
+
+                            <div class="px-6 py-4">
+                                   <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">
+                                          {{ $post->user->name }}
+                                   </span>
+                                   @role('super-admin')
+                                   <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">
+                                          <a href="{{route('admin.posts.edit', ['post' => $post->id]) }}" 
+                                                 class="capitalize inline-block text-sm px-4 py-2 leading-none border rounded text-gray-600 border-white hover:border-transparent hover:text-teal-900 hover:bg-teal-300 mt-4 lg:mt-0">
+                                                 edit
+                                          </a>
+                                   </span>
+                                         
+                                   <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">
+                                          <form 
+                                                 action="{{ route('admin.posts.destroy', $post->id) }}"
+                                                 method="POST">
+                                                 @csrf
+                                                 @method('DELETE')
+                                                 <x-button>
+                                                        {{ __('Delete') }}
+                                                 </x-button>                                   
+                                          </form>
+                                   </span>
+
+                                   
+                                   @endrole
+                            </div>
                      </div>
-                     
               </div>
-              
-       </div>
 @endsection
 
 

@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SiteTermsController;
+use App\Http\Controllers\SitePriviciesController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+
+use App\Http\Controllers\ExportController;
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Models\Post;
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +28,17 @@ Route::get('/', function () {
     return view('welcome', compact('posts'));
 });
 
+Route::middleware(ProtectAgainstSpam::class)->group(function() {
+    Auth::routes(
+        [
+            'register' => false,
+            'login' => true,
+            'verify' => true,
+        ]
+    );
+});
 
-Auth::routes(
-    [
-        'register' => true,
-        'login' => true,
-        'verify' => true,
-    ]
-);
+Route::feeds();
 
 Route::group([
     'prefix' => 'admin', 
@@ -42,21 +49,50 @@ Route::group([
     Route::get('admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])
     ->name('admin.home');
     // Post Routes
-    Route::resource('admin/posts', PostController::class)
-    ->only(['store','create','update','edit','destroy']);
+    Route::resource('admin/posts', PostController::class)->middleware(ProtectAgainstSpam::class)
+    ->only(['index','store','create','update','edit','destroy']);
+    Route::get('/clear-cache', 'HomeController@clearCache')->name('clearCache');
+    Route::get('export', [ExportController::class, 'export'])->name('admin.export');
+
+
 });	
 
-   
-    Route::get('admin/posts/show/{post}', [App\Http\Controllers\Admin\PostController::class, 'show'])
-    ->name('posts.show');
 
-
+// Legal
 Route::group([
-    'middleware' => ['auth'] // <= This is our new middleware
+    'prefix' => 'legal', 
+    'as' => 'legal', 
 ], function () {
-    // Setting
-    Route::get('/account', [App\Http\Controllers\SettingController::class, 'index'])
-    ->name('account.index');
+    // Site Term 
+    Route::get('user/siteterms', [App\Http\Controllers\SiteTermsController::class, 'index'])
+    ->name('siteterm.index');
+    // Site Privicy 
+    Route::get('user/siteprivicy', [App\Http\Controllers\SitePriviciesController::class, 'index'])
+    ->name('siteprivicy.index');
+});	
+
+    Route::get('admin/posts/show/{slug}', [App\Http\Controllers\Admin\PostController::class, 'show'])
+    ->name('posts.show');
+   
+
+
+// Legal
+Route::group([
+    'prefix' => 'legal', 
+    'as' => 'legal', 
+], function () {
+    // Site Term 
+    Route::get('user/siteterms', [App\Http\Controllers\SiteTermsController::class, 'index'])
+    ->name('siteterm.index');
+    // Site Privicy 
+    Route::get('user/siteprivicy', [App\Http\Controllers\SitePriviciesController::class, 'index'])
+    ->name('siteprivicy.index');
+});
+
+// Auth 
+Route::group([
+    'middleware' => ['auth','verified',ProtectAgainstSpam::class] // <= This is our new middleware
+], function () {
     // Profile
     Route::get('admin/admin/profile', [App\Http\Controllers\ProfileController::class, 'edit'])
     ->name('profile.edit');
