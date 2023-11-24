@@ -166,7 +166,6 @@ return [
          * Package Service Providers...
           
          */
-        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
 
         /*
@@ -177,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FolioServiceProvider::class,
 
     ],
 

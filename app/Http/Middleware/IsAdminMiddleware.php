@@ -16,11 +16,6 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-    
-        if ( $user->hasAnyRole(['super-admin', 'admin']) ) {
-            return $next($request);
-        }
-
-        return redirect('/');
+        // return redirect('/');
     }
 }
