@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         //\App\Models\Blogpost::factory(100)->create();
 
         $this->call([
-           RolesAndPermissionsSeeder::class, 
+           //RolesAndPermissionsSeeder::class, 
         ]);
 
     }

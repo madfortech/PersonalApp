@@ -3,7 +3,6 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Comments\Models\Concerns\HasComments;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -12,14 +11,17 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Carbon\Carbon;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class Post extends Model implements HasMedia
+class Post extends Model implements HasMedia,Feedable
 {
     use HasFactory;
     use SoftDeletes;
     use InteractsWithMedia;
     use HasFactory;
-
+   
     protected $fillable = ['title', 'description','created_at','updated_at'];
 
     protected $dates = [
@@ -28,7 +30,6 @@ class Post extends Model implements HasMedia
         'deleted_at',
     ];
 
-  
     public function toSitemapTag(): Url | string | array
     {
         // Simple return:
@@ -41,8 +42,38 @@ class Post extends Model implements HasMedia
             ->setPriority(0.1);
     }
 
+    /**
+     * Get the user that owns the resource.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo The user that owns the resource.
+    */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function url()
+    {
+        if ($this->slug) {
+            return route('posts.show', $this->slug);
+        }
+        return route('posts.show', $this->id);
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->title)
+            ->summary($this->description)
+            ->updated($this->updated_at)
+            ->link($this->url())
+            ->authorName($this->title);
+    }
     
-
-
-
+    public static function getFeedItems()
+    {
+        return Post::all();
+    }
+ 
 }

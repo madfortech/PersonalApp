@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post; 
-
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +18,12 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-    $posts = Post::latest()->get();
+    $posts = Post::with('user')->get();
     return view('welcome', ['posts' => $posts]);
 
 });
 // Admin Dashboard
-Route::group(['middleware' => ['auth','role:super-admin']], function () {
+Route::group(['middleware' => ['auth','role:super-admin'] ], function () {
     Route::get('/admin', function () {
         return view('admin.home');
     })->name('admin.dashboard');
@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth','role:super-admin']], function () {
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+    // User 
+    Route::get('/users/index', [UserController::class, 'index'])->name('user.index');
 });
 
 // User Dashboard
@@ -53,3 +55,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::feeds();

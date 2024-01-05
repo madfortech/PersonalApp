@@ -2,32 +2,45 @@
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
     public function run()
     {
         // Reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $role1 = Role::create(['name' => 'super-admin']);
-        $role2 = Role::create(['name' => 'user']);
+        // create permissions
+        // Permission::create(['name' => 'edit-articles']);
+        // Permission::create(['name' => 'delete-articles']);
+        // Permission::create(['name' => 'publish-articles']);
+        // Permission::create(['name' => 'approve-comments']);
+        // Permission::create(['name' => 'delete-comments']);
+   
+       
+        //$role1 = Role::create(['name' => 'super-admin']);
+        // $role2 = Role::create(['name' => 'manager']);
 
-        $user = \App\Models\User::factory()->create([
-            'name' => 'admin',
-            'email' => 'superadmin@example.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('password'),
-        ]);
-        $user->assignRole($role1);
+        // $role2->givePermissionTo('approve-comments');
+        // $role2->givePermissionTo('delete-comments');
+        // $role2->givePermissionTo('publish-articles');
+        // $role2->givePermissionTo('delete-articles');   
+   
+        // $user = \App\Models\User::factory()->create([
+        //     'name' => 'Himanshu Nishad',
+        //     'email' => '',
+        //     'password' => Hash::make(''),
+        // ])->givePermissionTo(Permission::all());
+        // $user->assignRole($role1);
 
-        $user = \App\Models\User::factory()->create([
-            'name' => 'user',
-            'email' => 'user@example.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('password'),
-        ]);
-        $user->assignRole($role2);
+        // $user = \App\Models\User::factory()->create([
+        //     'name' => 'manager',
+        //     'email' => 'manager@example.com',
+        //     'password' => Hash::make('password'),
+        // ]);
+        // $user->assignRole($role2);
     }
 }

@@ -7,16 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Comments\Models\Concerns\InteractsWithComments;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable implements HasMedia
+
+
+class User extends Authenticatable  implements MustVerifyEmail
 {
     use Notifiable;
     use HasFactory;
     use HasRoles;
-    use InteractsWithMedia;
+    
+ 
 
     protected $table = 'users';
  
@@ -73,5 +74,20 @@ class User extends Authenticatable implements HasMedia
     {
         $this->notify(new ResetPassword($token));
     }
-  
+ 
+    protected function serializeDate($dateTime): string
+    {
+        return $dateTime->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Post>
+    */
+    public function posts():HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+
+    
 }
