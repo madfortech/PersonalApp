@@ -76,4 +76,11 @@ class Post extends Model implements HasMedia,Feedable
         return Post::all();
     }
  
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->nonQueued();
+    }
 }

@@ -91,8 +91,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        $post->delete();
+        $post = Post::withTrashed()->find($id); // Retrieve the soft deleted post
+        if ($post) {
+            $post->clearMediaCollection('avatar'); // Delete associated media
+            $post->forceDelete(); // Permanently delete the post
+        }
         return redirect()->route('posts.index');
     }
 

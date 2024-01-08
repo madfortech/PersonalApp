@@ -8,12 +8,12 @@
                     @foreach($posts as $post)
                       <div class="border-t-2 mb-3 lg:px-3 lg:py-3 mx-auto">
                     
-                            <video class="w-full aspect-video" id="notallowed" controls>
-                              <source 
-                                src="{{ $post->getFirstMediaUrl('avatar','preview') }}" 
-                                type="video/mp4" />
-                            </video>
-                       
+                            <iframe 
+                              class="w-full aspect-video" 
+                              src="{{ $post->getFirstMediaUrl('avatar','preview') }}" 
+                              type="video/mp4">
+                            </iframe>
+
                             <div class="border-t-2 lg:py-3 lg:px-3">
                               <time>Publish on {{ \Carbon\Carbon::parse($post->created_at)->format('d F Y') }}</time>
                               <h2> {{ $post->title }}</h2>
