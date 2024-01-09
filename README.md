@@ -1,4 +1,4 @@
-old migration file name
+old migration file name  chage
 2022_02_10_094924_add_blogposts_id_post_image_column
 2021_07_31_084720_create_blog_posts_table
 2022_02_10_094924_add_blogposts_id_post_image_column
