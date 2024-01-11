@@ -12,11 +12,11 @@
                     <div class="prose lg:prose-xl">
                       <h2> Add New Post</h2>
                       <div>
-                        @if(session('success'))
-                          <div class="alert alert-success text-gray-900 bg-green-800">
-                              {{ session('success') }}
-                          </div>
-                        @endif
+                        @session('status')
+                        <div class="alert alert-success bg-green-400 text-white p-2" role="alert">
+                            {{ $value }}
+                        </div>
+                        @endsession
                       </div>
                     </div>
                        

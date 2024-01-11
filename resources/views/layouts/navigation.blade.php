@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ ('/') }}">
-                       <img src="{{asset('img/https___imagecdn.copymatic.ai_3369ddb5-f6a3-475f-8515-a5a04cf5ca16-1-removebg-preview.png')}}" width="100" height="100" alt="logo">
+                    <a href="{{ ('/') }}" class="font-bold capitalize">
+                       blog me
                     </a>
                 </div>
 
@@ -33,11 +33,13 @@
                     <x-nav-link :href="('/posts')" :active="request()->routeIs('posts.index')">
                         {{ __('Articles') }}
                     </x-nav-link>
+
                     @role('super-admin')
                         <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
-                            {{ __('Create') }}
+                            {{ __('Add new') }}
                         </x-nav-link>
                     @endrole
+                    
                     
                 </div>
             </div>

@@ -9,16 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-
 class User extends Authenticatable  implements MustVerifyEmail
 {
     use Notifiable;
     use HasFactory;
     use HasRoles;
     
- 
-
     protected $table = 'users';
  
     /**
@@ -87,7 +83,6 @@ class User extends Authenticatable  implements MustVerifyEmail
     {
         return $this->hasMany(Post::class);
     }
-
 
     
 }

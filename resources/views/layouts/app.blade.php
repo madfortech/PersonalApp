@@ -42,14 +42,14 @@
                 @include('footer')
             </footer> --}}
         </div>
-        {{-- <script>
+        <script>
             const myDiv = document.getElementById("rightclickdisable");
 
             myDiv.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             });
 
-        </script> --}}
+        </script>
         <script>
             feather.replace();
         </script>

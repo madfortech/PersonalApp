@@ -22,16 +22,13 @@ class PostFactory extends Factory
      */
 
     
-    public function definition()
+    /**
+     * Define the function.
+     *
+     * @return void
+    */
+    public function definition(): void
     {
-        return [
-            'title' => $this->faker->sentence(),
-            'user_id' => 1,
-            'description' => $this->faker->paragraphs(),
-            'created_at' => $this->faker->dateTime(),
-            'updated_at' => $this->faker->dateTime(),
-        ];
-
        
     }
 }

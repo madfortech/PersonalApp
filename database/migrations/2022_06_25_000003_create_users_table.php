@@ -11,10 +11,10 @@ return new class extends Migration
        
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->nullable()->unique();
             $table->datetime('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

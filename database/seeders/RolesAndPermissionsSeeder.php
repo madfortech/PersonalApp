@@ -14,23 +14,22 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
+        // Permission::create(['name' => 'create-articles']);
         // Permission::create(['name' => 'edit-articles']);
         // Permission::create(['name' => 'delete-articles']);
-        // Permission::create(['name' => 'publish-articles']);
         // Permission::create(['name' => 'approve-comments']);
         // Permission::create(['name' => 'delete-comments']);
-   
        
         $role1 = Role::create(['name' => 'super-admin']);
         // $role2 = Role::create(['name' => 'manager']);
-
+        // $role2->givePermissionTo('create-articles');
         // $role2->givePermissionTo('approve-comments');
         // $role2->givePermissionTo('delete-comments');
         // $role2->givePermissionTo('publish-articles');
         // $role2->givePermissionTo('delete-articles');   
    
         $user = \App\Models\User::factory()->create([
-            'name' => 'Himanshu Nishad',
+            'name' => 'admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
         ])->givePermissionTo(Permission::all());

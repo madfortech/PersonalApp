@@ -43,7 +43,7 @@ class PostController extends Controller
         }
         return redirect()
         ->back()
-        ->with('success', 'Post created success!');
+        ->with('status', 'Post created success!');
     }
 
     /**
@@ -82,7 +82,7 @@ class PostController extends Controller
                 ->toMediaCollection('avatar');
         }
         return redirect()->route('posts.edit', $post->id)
-        ->with('success', 'Post updated successfully');
+        ->with('status', 'Post updated successfully');
 
     }
 
@@ -96,7 +96,8 @@ class PostController extends Controller
             $post->clearMediaCollection('avatar'); // Delete associated media
             $post->forceDelete(); // Permanently delete the post
         }
-        return redirect()->route('posts.index');
+        return redirect()
+        ->route('posts.index');
     }
 
    

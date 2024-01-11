@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('slug')->unique()->nullable();
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->softDeletes('deleted_at');
             $table->timestamps();
         });
