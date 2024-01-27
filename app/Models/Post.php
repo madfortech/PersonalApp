@@ -22,7 +22,16 @@ class Post extends Model implements HasMedia,Feedable
     use InteractsWithMedia;
     use HasFactory;
    
-    protected $fillable = ['title', 'description','created_at','updated_at'];
+    protected $table = 'posts';
+    
+    protected $fillable = [
+        'user_id',
+        'title',
+        'slug',
+        'description',
+        'created_at',
+        'updated_at'
+    ];
 
     protected $dates = [
         'created_at',

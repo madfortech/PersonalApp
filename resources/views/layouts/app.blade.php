@@ -6,13 +6,16 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
       
         <title>{{ config('app.name', 'Himanshu Nishad') }}</title>
- 
+        <link href="//vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <script src="https://unpkg.com/feather-icons"></script>
+
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+        <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+
+        
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -53,6 +56,8 @@
         <script>
             feather.replace();
         </script>
-      
-    </body>
+ 
+        <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+
+     </body>
 </html>

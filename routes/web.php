@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\PermissionsController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post; 
 
@@ -35,24 +33,6 @@ Route::group(['middleware' => ['auth','role:super-admin'] ], function () {
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-
-    // User 
-    Route::prefix('admin')->group(function () {
-        Route::resource('/users', UserController::class)->only([
-            'create','store','show','destroy'
-        ]);
-    });
-    // Permissions Routes
-    Route::resource('permissions', PermissionsController::class)->only([
-       'create', 'store',
-    ]);
-});
-
-// Manager Routes
-Route::group(['middleware' => ['role:manager|super-admin']], function () {
-    Route::resource('posts', PostController::class)->only([
-        'create', 'store'
-    ]);
 });
 
 // User Dashboard

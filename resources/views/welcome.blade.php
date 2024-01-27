@@ -7,13 +7,14 @@
                   <article class="prose lg:prose-xl">
                     @foreach($posts as $post)
                       <div class="border-t-2 mb-3 lg:px-3 lg:py-3 mx-auto">
-                    
-                            <iframe 
-                              class="w-full aspect-video" 
-                              src="{{ $post->getFirstMediaUrl('avatar','preview') }}" 
-                              type="video/mp4">
-                            </iframe>
-
+                     
+                            
+                              <video id="example-player" class="w-full aspect-video">
+                                <source 
+                                  src="{{ $post->getFirstMediaUrl('avatars','preview') }}" 
+                                  type="video/mp4"/>
+                              </video>
+                           
                             <div class="border-t-2 lg:py-3 lg:px-3">
                               <time>Publish on {{ \Carbon\Carbon::parse($post->created_at)->format('d F Y') }}</time>
                               <h2> {{ $post->title }}</h2>
@@ -29,16 +30,17 @@
                                 </x-nav-link>
                               </div>
                             </div>
-                       
+                    
                       </div>
                     @endforeach
+ 
                   </article>
                 </div>
               <div>
  
              
 </x-app-layout>
-<script>
+{{-- <script>
   function noDownload() {
   var videoElems = document.querySelectorAll('#notallowed');
   videoElems.forEach(function(video) {
@@ -46,6 +48,28 @@
   });
 }
 window.onload = noDownload;
-</script>
+</script> --}}
 
+<script>
+  var player = fluidPlayer(
+     'example-player',
+      {
+          layoutControls: {
+              // Parameters to customise the look and feel of the player
+              primaryColor:           "#28B8ED",
+              playButtonShowing:      true,
+              fillToContainer:        true,
+              autoPlay:               false,
+              allowDownload:          false,
+              allowTheatre:           true,
+              posterImage: '{{asset('img/https___imagecdn.copymatic.ai_c9318103-d75e-4b9f-87b4-d28718a8007e-1.png')}}' ,// Default false
+               
+          },
+          vastOptions: {
+              // Parameters to customise how the ads are displayed & behave
+               
+          }
+      }
+  );
+  </script>
  

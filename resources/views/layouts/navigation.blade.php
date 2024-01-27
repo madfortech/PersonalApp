@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-emerald-300	 border-0 rounded-none fixed top-0 right-0 left-0">
+<nav x-data="{ open: false }" class="bg-emerald-300	 border-0 rounded-none fixed top-0 right-0 left-0 z-30">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -126,6 +126,7 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
+                 
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>

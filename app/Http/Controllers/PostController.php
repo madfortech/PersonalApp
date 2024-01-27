@@ -30,17 +30,21 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $post = new Post($request->all());
+        $post = new Post([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
+
         $post->user_id = auth()->user()->id;
         $slug = Str::slug($request->input('title'));
         $post->slug = $slug;
-        $post->save();
       
         if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
             $post->addMediaFromRequest('avatar')
             ->withResponsiveImages()
-            ->toMediaCollection('avatar');
+            ->toMediaCollection('avatars');
         }
+        $post->save();
         return redirect()
         ->back()
         ->with('status', 'Post created success!');
