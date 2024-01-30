@@ -1,11 +1,13 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-b5139e7e.css",
-    "isEntry": true,
-    "src": "resources/css/app.css"
+    "file": "assets/app-Ng43xDEl.css",
+    "src": "resources/js/app.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-5a88bc57.js",
+    "css": [
+      "assets/app-Ng43xDEl.css"
+    ],
+    "file": "assets/app-y-JraqSR.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

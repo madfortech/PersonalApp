@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ ('/') }}" class="font-bold capitalize">
-                       blog me
+                       blog 
                     </a>
                 </div>
 
