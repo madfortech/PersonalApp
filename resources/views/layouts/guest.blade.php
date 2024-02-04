@@ -18,7 +18,7 @@
 
         
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+       <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         
     </head>
     <body class="font-sans text-gray-900 antialiased">
@@ -35,6 +35,6 @@
         </div>
        
         <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
-
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 </html>

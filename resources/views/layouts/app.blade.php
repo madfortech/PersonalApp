@@ -18,7 +18,7 @@
         
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         
          
     </head>
@@ -58,6 +58,7 @@
         </script>
  
         <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
 
      </body>
 </html>
