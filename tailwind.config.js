@@ -19,7 +19,10 @@ const defaultTheme = require('tailwindcss/defaultTheme');
     },
 
 
-   plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+    ],
 };
 
 

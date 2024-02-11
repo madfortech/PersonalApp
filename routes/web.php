@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\User\SessionController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post; 
 
@@ -40,6 +41,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', function () {
         return view('dashboard');
     })->name('user.dashboard');
+    //Sessions
+    Route::get('/user/login-activity', [SessionController::class, 'index'])->name('login.activity');
+
+    
 });
 
 Route::middleware('auth')->group(function () {

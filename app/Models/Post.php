@@ -79,6 +79,7 @@ class Post extends Model implements HasMedia,Feedable
             ->link($this->url())
             ->authorName($this->title);
     }
+
     
     public static function getFeedItems()
     {

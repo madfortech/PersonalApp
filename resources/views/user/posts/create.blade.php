@@ -41,6 +41,7 @@
                         <div class="mt-4">
 
                           <label for="avatar" :value="__('Avatar')" >
+                            <span><i>max size 1gb only</i></span>
                             <input id="avatar" type="file" 
                               class="rounded border-gray-300 text-indigo-600 w-full
                               shadow-sm focus:ring-indigo-500" 
@@ -48,7 +49,7 @@
                             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                           </label>
                         </div>
-                      <!-- Avatar -->
+                        <!-- Avatar -->
 
                         <div class="mt-4">
                           <label for="content" :value="__('Content')" >
@@ -72,8 +73,6 @@
                             </x-primary-button>
                         </div>
                     </form>
-
-
                     <!-- End Form -->
                   </div>
                 </div>

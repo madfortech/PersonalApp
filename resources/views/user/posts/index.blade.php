@@ -72,7 +72,7 @@ window.onload = noDownload;
               autoPlay:               false,
               allowDownload:          false,
               allowTheatre:           true,
-              posterImage: '{{asset('img/https___imagecdn.copymatic.ai_c9318103-d75e-4b9f-87b4-d28718a8007e-1.png')}}' ,// Default false
+              //posterImage: '{{asset('img/https___imagecdn.copymatic.ai_c9318103-d75e-4b9f-87b4-d28718a8007e-1.png')}}' ,// Default false
               
           },
           vastOptions: {

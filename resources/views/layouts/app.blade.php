@@ -39,7 +39,10 @@
             <main>
                 @include('layouts.navigation')
                 {{ $slot }}
+ 
             </main>
+
+          
 
             {{-- <footer class="py-5 grid grid-rows-1 bg-emerald-300">
                 @include('footer')

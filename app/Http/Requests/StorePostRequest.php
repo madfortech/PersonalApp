@@ -35,7 +35,7 @@ class StorePostRequest extends FormRequest
             'avatar' => [
                 'file', // Change 'image' to 'file' to allow any file type.
                 'mimetypes:video/*', // Allow any video MIME type.
-                'max:500000', // Maximum file size (2MB in this example).
+                'max:1048576', // Maximum file size (1GB in this example).
                 'required',
             ],
         ];
