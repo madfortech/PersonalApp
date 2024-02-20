@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,8 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->get();
-        return view('user.posts.index',['posts' => $posts]);
+        $latestpost = Post::latest()->limit(5)->get();
+        $post = Post::with('user')->get();
+        return view('posts.index',compact('post', 'latestpost'));
     }
 
     /**
@@ -22,7 +24,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('user.posts.create');
+        $latestpost = Post::latest()->limit(5)->get();
+        return view('posts.create',compact('latestpost'));
     }
 
     /**
@@ -30,34 +33,30 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $post = new Post([
+       
+        $user = Auth::user();
+
+        $post = Post::firstOrCreate([
             'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title')),
             'description' => $request->input('description'),
+            'user_id' => $user->id,
         ]);
 
-        $post->user_id = auth()->user()->id;
-        $slug = Str::slug($request->input('title'));
-        $post->slug = $slug;
-      
-        if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
-            $post->addMediaFromRequest('avatar')
-            ->withResponsiveImages()
-            ->toMediaCollection('avatars');
+        if ($request->hasFile('avatar')) {
+            $post->addMedia($request->file('avatar'))->toMediaCollection('posts');
         }
-        $post->save();
-        return redirect()
-        ->back()
-        ->with('status', 'Post created success!');
+        
+        return redirect()->back()->with('success', 'Post created successfully');
     }
 
     /**
      * Display the specified resource.
-     */
-    public function show(Post $post)
+    */
+    public function show(string $slug)
     {
-        return view('user.posts.show', [
-            'post' => $post
-        ]);
+        $post = Post::where('slug', $slug)->firstOrFail();
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -66,29 +65,35 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('user.posts.edit', compact('post'));
+       // $latestpost = Post::latest()->limit(5)->get();
+        return view('posts.edit', compact('post'));
 
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Post $post)
+    * Update the specified resource in storage.
+    */
+    public function update(StorePostRequest $request, Post $post)
     {
-        $post->update([
+        $user = Auth::user();
+        $post->updateOrCreate([
             'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title')),
             'description' => $request->input('description'),
+            'user_id' => $user->id,
+            
         ]);
-    
-        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
-            $post->addMediaFromRequest('avatar')
-                ->withResponsiveImages()
-                ->toMediaCollection('avatar');
+
+        if ($request->hasFile('avatar')) {
+            $post->addMedia($request->file('avatar'))->toMediaCollection('posts');
         }
-        return redirect()->route('posts.edit', $post->id)
-        ->with('status', 'Post updated successfully');
+
+        return redirect()
+        ->back()
+        ->with('success', 'Update updated successfully');
 
     }
+
 
     /**
      * Remove the specified resource from storage.

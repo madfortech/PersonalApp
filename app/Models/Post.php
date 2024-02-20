@@ -77,10 +77,10 @@ class Post extends Model implements HasMedia,Feedable
             ->summary($this->description)
             ->updated($this->updated_at)
             ->link($this->url())
-            ->authorName($this->title);
+            ->authorName($this->user->name);
     }
 
-    
+   
     public static function getFeedItems()
     {
         return Post::all();

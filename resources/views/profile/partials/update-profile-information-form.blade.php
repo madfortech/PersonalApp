@@ -23,12 +23,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-        <div>
-            <x-input-label for="media" :value="__('Avatar')" />
-            <x-text-input id="media" name="media" type="file" class="mt-1 block w-full" />
-         
-        </div>
-        <!-- Media -->
+     
 
         <div>
             <x-input-label for="email" :value="__('Email')" />

@@ -5,20 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Himanshu Nishad') }}</title>
+        <title>@yield('title')</title>
 
-        
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         
-        <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
-
+ 
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
         
         <!-- Scripts -->
-       <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+       <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         
     </head>
     <body class="font-sans text-gray-900 antialiased">
@@ -34,7 +32,5 @@
             </div>
         </div>
        
-        <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </body>
+     </body>
 </html>

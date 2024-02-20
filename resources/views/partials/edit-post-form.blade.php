@@ -1,24 +1,11 @@
-<x-app-layout>
-              <x-slot name="header">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                  {{-- {{ __('Dashboard') }} --}}
-                </h2>
-              </x-slot>
-
-            <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                
-                  <div class="max-w-lg rounded overflow-hidden shadow-lg p-8 px-4">
-                    <div class="prose lg:prose-xl">
-                      <h2> Update Post</h2>
-                      <div>
+                    <div>
                         
-                        @session('status')
+                        @session('success')
                         <div class="alert alert-success bg-green-400 text-white p-2" role="alert">
                             {{ $value }}
                         </div>
                         @endsession
-                      </div>
+                      
                     </div>
                        
                     <!-- Form -->
@@ -58,9 +45,3 @@
                         </div>
                     </form>
                     <!-- End Form -->
-                  </div>
-                </div>
-            </div>
-            
-</x-app-layout>
- 

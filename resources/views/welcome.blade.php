@@ -1,75 +1,51 @@
 <x-app-layout>
               
-              <div class="py-12 grid grid-rows-1 lg:grid-cols-1 gap-4">
-               
-                <div class="sm:w-7/12 mx-auto sm:px-6 lg:px-8 mt-9">
-                 
-                  <article class="prose lg:prose-xl">
-                    @foreach($posts as $post)
-                      <div class="border-t-2 mb-3 lg:px-3 lg:py-3 mx-auto">
-                     
-                            
-                              <video id="example-player" class="w-full aspect-video">
-                                <source 
-                                  src="{{ $post->getFirstMediaUrl('avatars','preview') }}" 
-                                  type="video/mp4"/>
-                              </video>
-                           
-                            <div class="border-t-2 lg:py-3 lg:px-3">
-                              <time>Publish on {{ \Carbon\Carbon::parse($post->created_at)->format('d F Y') }}</time>
-                              <h2> {{ $post->title }}</h2>
-                              
-                              <p class="line-clamp-3">  {{ $post->description }}</p>
-                              <span class="font-bold text-sm"> 
-                                Author: {{ $post->user->name }}
-                              </span>
-                              <div>
-                                <x-nav-link  :href="route('posts.show', $post->slug)" 
-                                    class="no-underline rounded-full border border-indigo-600 px-3">
-                                  {{ __('Read more') }}
-                                </x-nav-link>
-                              </div>
-                            </div>
-                    
-                      </div>
-                    @endforeach
- 
-                  </article>
-                </div>
-              <div>
- 
-             
-</x-app-layout>
-{{-- <script>
-  function noDownload() {
-  var videoElems = document.querySelectorAll('#notallowed');
-  videoElems.forEach(function(video) {
-    video.setAttribute('controlsList', 'nodownload');
-  });
-}
-window.onload = noDownload;
-</script> --}}
+@section('title','Himanshu Nishad')
 
-<script>
-  var player = fluidPlayer(
-     'example-player',
-      {
-          layoutControls: {
-              // Parameters to customise the look and feel of the player
-              primaryColor:           "#28B8ED",
-              playButtonShowing:      true,
-              fillToContainer:        true,
-              autoPlay:               false,
-              allowDownload:          false,
-              allowTheatre:           true,
-              //posterImage: '{{asset('img/https___imagecdn.copymatic.ai_c9318103-d75e-4b9f-87b4-d28718a8007e-1.png')}}' ,// Default false
-               
-          },
-          vastOptions: {
-              // Parameters to customise how the ads are displayed & behave
-               
-          }
-      }
-  );
-  </script>
+<div class="lg:grid grid-rows-1 grid-cols-1 mt-12">
+  <div class="w-3/4 mx-auto p-4 rounded-sm">
+        @foreach($post as $key => $item)
+          <article class="border-2 mt-2 p-3"> 
+  
+            
+              @foreach($item->getMedia('posts') as $media)
+
+                <video 
+                  controls 
+                  controlsList="nodownload"
+                  class="aspect-video" 
+                  src="{{ asset($media->getUrl()) }}"
+                  type="{{ $media->mime_type }}">
+                </video>
+              @endforeach
+          
+          
+            <div class="card p-3">
+              <h5 class="text-3xl capitalize"> {{ $item->title ?? '' }}</h5>
+              <p class="text-2xl capitalize text-gray-900">
+                {{ Illuminate\Support\Str::limit($item->description ?? '', 100) }}    
+              </p>
+
+              <div class="mt-3">
+                <span class="px-3 p-1 capitalize bg-red-500 rounded-full text-white">
+                  {{ $item->user->name ?? 'Unknown User' }}
+                </span>
+              </div>
+              <div class="mt-3 py-3">
+                <x-nav-link :href="route('posts.show', ['post' => $item->slug])">
+                  {{ __('Read more') }}
+                </x-nav-link>
+              </div>
+            </div>
+          </article>
+        @endforeach
+      
+  </div>
+ 
+
+    
+</div>
+</x-app-layout>
+
+
  

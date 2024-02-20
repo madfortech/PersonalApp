@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ ('/') }}" class="font-bold capitalize">
-                       blog 
+                       Like Follow Share 
                     </a>
                 </div>
 
@@ -30,9 +30,7 @@
                         </x-nav-link>
                     @endguest
 
-                    <x-nav-link :href="('/posts')" :active="request()->routeIs('posts.index')">
-                        {{ __('Articles') }}
-                    </x-nav-link>
+                   
 
                     @role('super-admin')
                         <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
@@ -52,9 +50,6 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             
-                            @if(Auth::user()->getFirstMediaUrl('photolibrary'))
-                                <img src="{{ Auth::user()->getFirstMediaUrl('photolibrary') }}" alt="{{ Auth::user()->name }}" class="h-8 w-8 rounded-full">
-                            @endif
                             <div>
                                 {{ Auth::user()->name }}
                             </div>
@@ -72,10 +67,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('login.activity')">
-                            {{ __('Login activity') }}
-                        </x-dropdown-link>l
-
+                       
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -123,14 +115,8 @@
                 {{ __('Login') }}
             </x-responsive-nav-link>
             @endguest
-
-            <x-responsive-nav-link :href="('posts')" :active="request()->routeIs('posts')">
-                {{ __('Posts') }}
-            </x-responsive-nav-link>
-
-            {{-- <x-responsive-nav-link :href="('contact')" :active="request()->routeIs('contact')">
-                {{ __('Contact') }}
-            </x-responsive-nav-link> --}}
+ 
+ 
         </div>
 
         @auth

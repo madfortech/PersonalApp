@@ -14,13 +14,14 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">
           
             <!-- Page Content -->
-            <main>
+            <main class="py-16">
                 @include('layouts.navigation')
                 @yield('message')
             </main>

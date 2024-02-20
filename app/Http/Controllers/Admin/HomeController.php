@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
+
 
 class HomeController extends Controller
 {
@@ -14,7 +16,11 @@ class HomeController extends Controller
      */
     public function index()
     { 
- 
-        return view('admin.home',compact('lastActivity'));
+        $latestuser = User::latest()->limit(5)->get();
+        
+        // Retrieve all posts from the database
+        $latestpost = Post::latest()->limit(5)->get();
+       
+        return view('admin.home', compact('latestpost', 'latestuser'));
     }
 }
