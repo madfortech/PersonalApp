@@ -1,7 +1,7 @@
     
-          <h2 class="text-2xl capitalize">activity</h2>
-          <div>
-              <ul class="list-disc	border-2 p-1 rounded-sm">
+          <h2 class="text-2xl capitalize">latest post</h2>
+          <div class="">
+              <ul class="list-disc	border-2 p-1 rounded-sm divide-y">
 
                 @foreach($latestpost as $item)
                   <li>

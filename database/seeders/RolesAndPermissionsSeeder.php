@@ -20,8 +20,8 @@ class RolesAndPermissionsSeeder extends Seeder
         // Permission::create(['name' => 'approve-comments']);
         // Permission::create(['name' => 'delete-comments']);
        
-        //$role1 = Role::create(['name' => 'super-admin']);
-         //$role2 = Role::create(['name' => 'user']);
+        $role1 = Role::create(['name' => 'super-admin']);
+        //$role2 = Role::create(['name' => 'user']);
         // $role2 = Role::create(['name' => 'manager']);
         // $role2->givePermissionTo('create-articles');
         // $role2->givePermissionTo('approve-comments');
@@ -29,12 +29,12 @@ class RolesAndPermissionsSeeder extends Seeder
         // $role2->givePermissionTo('publish-articles');
         // $role2->givePermissionTo('delete-articles');   
    
-        // $user = \App\Models\User::factory()->create([
-        //     'name' => 'admin',
-        //     'email' => 'admin@example.com',
-        //     'password' => Hash::make('password'),
-        // ])->givePermissionTo(Permission::all());
-        // $user->assignRole($role1);
+        $user = \App\Models\User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+        ])->givePermissionTo(Permission::all());
+        $user->assignRole($role1);
 
         // $user = \App\Models\User::factory()->create([
         //     'name' => 'user',

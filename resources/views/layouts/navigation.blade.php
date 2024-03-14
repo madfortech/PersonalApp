@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ ('/') }}" class="font-bold capitalize">
-                       Like Follow Share 
+                       blog
                     </a>
                 </div>
 
@@ -38,8 +38,7 @@
                         </x-nav-link>
  
                     @endrole
-                    
-                    
+                 
                 </div>
             </div>
 

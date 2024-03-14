@@ -54,5 +54,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+    Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+    Route::get('/users-visitor', function () {
+        return view('users-visitor');
+    });
+
+
+
+
 Route::feeds();

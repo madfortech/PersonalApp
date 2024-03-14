@@ -9,9 +9,23 @@
   </x-slot>
 
   <div class="lg:grid grid-rows-1 grid-cols-1 mt-12">
-    <div class="w-3/4 mx-auto p-4 rounded-sm">
+    <div class="max-w-2xl	mx-auto p-4 rounded-sm">
  
-        <article>
+        <article class="prose lg:prose-xl rounded-md border-2 mb-4 p-4 max-w-md w-full">  
+          
+          <div class="mb-4">
+         
+            <div class="text-sm">
+              <span class="mr-2 p-1 capitalize bg-red-500 rounded-full text-white">
+                {{ $post->user->name ?? 'Unknown User' }}
+              </span>
+             
+              <span class=" p-1 capitalize bg-red-500 rounded-full text-white">
+                {{ $post->created_at }}
+              </span>
+            </div>
+          </div>
+
           @if($post->hasMedia('posts'))
             @foreach($post->getMedia('posts') as $media)
 
@@ -25,16 +39,12 @@
             @endforeach
           @endif
 
-          <div class="card p-3">
+          <div class="card">
               <p class="text-2xl capitalize text-gray-900">
                 {{ $post->description ?? '' }}
               </p>              
           </div>
-          <div class="mt-24">
-            <span class="px-3 p-2 capitalize bg-red-500 rounded-full text-white">
-              {{ $post->user->name ?? 'Unknown User' }}
-            </span>
-          </div>
+          
         </article>
       
     </div>

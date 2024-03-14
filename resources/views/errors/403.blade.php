@@ -15,7 +15,7 @@
                 class="w-auto h-96 pt-12 mt-6">
         </div>
        
-        <div class="prose lg:prose-xl py-48">
+        <div class="prose lg:prose-xl py-24 text-center">
            <h3>Forbidden</h3>
         </div>
     </div>

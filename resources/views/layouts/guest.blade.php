@@ -14,7 +14,7 @@
  
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-        
+ 
         <!-- Scripts -->
        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         
@@ -31,6 +31,6 @@
                 {{ $slot }}
             </div>
         </div>
-       
+ 
      </body>
 </html>

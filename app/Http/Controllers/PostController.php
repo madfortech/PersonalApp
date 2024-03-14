@@ -61,22 +61,22 @@ class PostController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     */
+    */
     public function edit($id)
     {
         $post = Post::find($id);
-       // $latestpost = Post::latest()->limit(5)->get();
-        return view('posts.edit', compact('post'));
+        $latestpost = Post::latest()->limit(5)->get();
+        return view('posts.edit', compact('post', 'latestpost'));
 
     }
 
     /**
     * Update the specified resource in storage.
     */
-    public function update(StorePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
         $user = Auth::user();
-        $post->updateOrCreate([
+        $post->update([
             'title' => $request->input('title'),
             'slug' => Str::slug($request->input('title')),
             'description' => $request->input('description'),

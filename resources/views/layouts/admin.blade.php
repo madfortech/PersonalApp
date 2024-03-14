@@ -19,7 +19,7 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         
-         
+ 
     </head>
     <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">

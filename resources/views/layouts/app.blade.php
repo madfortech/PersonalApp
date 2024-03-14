@@ -18,7 +18,7 @@
         <!-- Scripts -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-         
+ 
     </head>
     <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">
@@ -58,6 +58,6 @@
             feather.replace();
         </script>
  
- 
+         
      </body>
 </html>
