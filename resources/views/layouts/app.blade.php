@@ -20,7 +20,7 @@
 
         <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/ckin.css')}}">
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @vite('resources/css/app.css')
 
         
      <body class="font-sans antialiased" id="rightclickdisable">
@@ -61,6 +61,6 @@
             feather.replace();
         </script>
         <script src="{{asset('js/ckin.js')}}"></script>
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        @vite('resources/js/app.js')
      </body>
 </html>

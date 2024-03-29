@@ -16,7 +16,7 @@
         
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        @vite('resources/css/app.css')
        
         <link rel="stylesheet" href="{{asset('css/ckin.css')}}">
 
@@ -46,6 +46,6 @@
         </script>
       
       <script src="{{asset('js/ckin.js')}}"></script>
-      <script src="{{ mix('js/app.js') }}" defer></script>
+      @vite('resources/js/app.js')
      </body>
 </html>
