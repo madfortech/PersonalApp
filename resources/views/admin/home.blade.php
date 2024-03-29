@@ -12,20 +12,26 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="lg:flex flex-row gap-3 p-3 rounded-sm">
             <div class="basis-1/3 p-5 border-2 rounded-sm">
-                @include('partials.latest-posts')
+                @include('partials.posts.latest-posts')
+
+                <div class="mt-3 p-2 py-4">
+                    @include('partials.categories.latest-categories')
+                </div>
+                
             </div>
+
+           
         
             <div class="basis-1/2 p-5 border-2 rounded-sm">
-                @include('partials.latest-users')
+                @include('partials.users.latest-users')
             </div>
         
-            {{-- <div class="basis-1/6 p-5 border-2 rounded-sm">
-              
-            </div> --}}
-        
+          
         </div>
+
+       
     </div>
- 
+  
 </x-app-layout>
 
  

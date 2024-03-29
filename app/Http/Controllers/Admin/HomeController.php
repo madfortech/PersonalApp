@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
-
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -17,10 +17,12 @@ class HomeController extends Controller
     public function index()
     { 
         $latestuser = User::latest()->limit(5)->get();
-        
         // Retrieve all posts from the database
         $latestpost = Post::latest()->limit(5)->get();
-       
-        return view('admin.home', compact('latestpost', 'latestuser'));
+        $latestCategory = Category::latest()->limit(5)->get();
+
+      
+      
+        return view('admin.home', compact('latestpost', 'latestuser','latestCategory'));
     }
 }

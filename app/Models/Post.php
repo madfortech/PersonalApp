@@ -4,10 +4,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Carbon\Carbon;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
@@ -30,7 +30,8 @@ class Post extends Model implements HasMedia,Feedable
         'slug',
         'description',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $dates = [
@@ -90,7 +91,15 @@ class Post extends Model implements HasMedia,Feedable
     {
         $this
             ->addMediaConversion('preview')
-            ->fit(Manipulations::FIT_CROP, 300, 300)
-            ->nonQueued();
+            ->extractVideoFrameAtSecond(10)
+            ->performOnCollections('videos')
+            ->sharpen(90);
+    }
+
+    
+    
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'post_category');
     }
 }

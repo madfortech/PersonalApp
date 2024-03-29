@@ -17,9 +17,11 @@
         
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+       <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         
  
+
+
     </head>
     <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">
@@ -40,12 +42,7 @@
                 {{ $slot }}
  
             </main>
-
-          
-
-            {{-- <footer class="py-5 grid grid-rows-1 bg-emerald-300">
-                @include('footer')
-            </footer> --}}
+ 
         </div>
         <script>
             const myDiv = document.getElementById("rightclickdisable");
@@ -58,7 +55,6 @@
         <script>
             feather.replace();
         </script>
- 
- 
+        <script src="{{ mix('js/app.js') }}" defer></script>
      </body>
 </html>

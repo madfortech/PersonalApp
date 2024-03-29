@@ -8,61 +8,67 @@
     </h2>
   </x-slot>
 
-  <div class="lg:grid grid-rows-1 grid-cols-1 mt-12">
-    <div class="max-w-2xl	mx-auto p-4 rounded-sm">
- 
+  <div class="lg:grid grid-cols-2 gap-3 mt-12">
+      <div class="max-w-5xl p-5">
         <article class="prose lg:prose-xl rounded-md border-2 mb-4 p-4 max-w-md w-full">  
           
           <div class="mb-4">
-         
-            <div class="text-sm">
-              <span class="mr-2 p-1 capitalize bg-red-500 rounded-full text-white">
+          
+            <div class="text-sm"> 
+              <span class="p-1 capitalize bg-red-500 rounded-full text-white">
                 {{ $post->user->name ?? 'Unknown User' }}
               </span>
-             
-              <span class=" p-1 capitalize bg-red-500 rounded-full text-white">
+            
+              <span class="p-1 capitalize bg-red-500 rounded-full text-white">
                 {{ $post->created_at }}
               </span>
+
+            
+                <span class="p-1 capitalize bg-red-500 rounded-full text-white">
+                  @foreach($post->categories as $category)
+                  {{ $category->name }}
+                  @endforeach
+
+                </span>
+            
+
             </div>
           </div>
 
           @if($post->hasMedia('posts'))
             @foreach($post->getMedia('posts') as $media)
 
+            
               <video 
-                controls
-                controlsList="nodownload"
-                class="w-full aspect-video" 
+                poster="{{ $media->getUrl('preview') }}" 
                 src="{{ asset($media->getUrl()) }}"
-                type="{{ $media->mime_type }}">
+                type="{{ $media->mime_type }}"
+                data-overlay="1" 
+                data-color="#fff000"
+                data-ckin="default"
+                alt=" {{ $post->title }}"
+                class="aspect-auto w-full" 
+                data-title="{{ $post->title }}">
               </video>
             @endforeach
           @endif
 
           <div class="card">
-              <p class="text-2xl capitalize text-gray-900">
-                {{ $post->description ?? '' }}
-              </p>              
+            <p class="text-2xl capitalize text-gray-900">
+              {{ $post->description ?? '' }}
+            </p>              
           </div>
-          
         </article>
-      
-    </div>
+      </div>
+
+      <div>
+        aa
+      </div>
+    
+    
   </div>
 
-
-                        
-
 </x-app-layout>
-{{-- <script>
-  function noDownload() {
-  var videoElems = document.querySelectorAll('#notallowed');
-  videoElems.forEach(function(video) {
-    video.setAttribute('controlsList', 'nodownload');
-  });
-}
-window.onload = noDownload;
-</script> --}}
-
+ 
  
  

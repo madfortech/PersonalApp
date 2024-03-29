@@ -23,6 +23,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+       
      
 
         <div>

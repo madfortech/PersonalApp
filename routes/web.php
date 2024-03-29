@@ -1,9 +1,12 @@
 <?php
+
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\UserHomeController;
+use App\Http\Controllers\User\PostController;
+use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\ArchiveController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post; 
 
@@ -22,7 +25,7 @@ Route::get('/', function () {
    
     $post = Post::all();
     return view('welcome',compact('post'));
-
+  
 });
 // Admin Dashboard
 Route::group(['middleware' => ['auth','role:super-admin'] ], function () {
@@ -38,6 +41,17 @@ Route::group(['middleware' => ['auth','role:super-admin'] ], function () {
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    // Category
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+
+    // Archive Post Data
+    Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.index');
+    Route::delete('/archive/{id}', [ArchiveController::class, 'destroy'])->name('archive.destroy');
+    Route::patch('/archive/{id}/show', [ArchiveController::class, 'show'])->name('archive.show');
+
 });
 
 // User Dashboard
@@ -58,8 +72,5 @@ require __DIR__.'/auth.php';
     Route::get('/users-visitor', function () {
         return view('users-visitor');
     });
-
-
-
 
 Route::feeds();

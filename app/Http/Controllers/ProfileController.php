@@ -34,12 +34,7 @@ class ProfileController extends Controller
 
         $user = auth()->user();
 
-        if($request->hasFile('media') && $request->file('media')->isValid()){
-            $user->addMediaFromRequest('media')
-            ->withResponsiveImages()
-            ->toMediaCollection('photolibrary');
-        }
-
+       
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

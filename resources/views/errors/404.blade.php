@@ -17,5 +17,5 @@
             Open Doors to New Possibilities</h1>
         </div>
     </div>
-  <div>
+<div>
 @endsection

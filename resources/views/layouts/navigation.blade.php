@@ -36,9 +36,8 @@
                         <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                             {{ __('Add new') }}
                         </x-nav-link>
- 
                     @endrole
-                 
+                  
                 </div>
             </div>
 
@@ -66,7 +65,10 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                       
+                        <x-dropdown-link :href="route('archive.index')">
+                            {{ __('Archive') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -107,6 +109,10 @@
                         {{ __('Dashboard') }}
                     </x-responsive-nav-link>
                 @endrole
+
+                <x-responsive-nav-link :href="route('archive.index')" :active="request()->routeIs('archive.index')">
+                    {{ __('Archive') }}
+                </x-responsive-nav-link>
             @endauth
 
             @guest
@@ -130,6 +136,10 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('archive.index')">
+                    {{ __('Archive') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

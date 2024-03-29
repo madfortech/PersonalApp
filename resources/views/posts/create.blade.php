@@ -10,17 +10,19 @@
 
                   <div class="lg:flex flex-row gap-3 p-3 rounded-sm">
                     <div class="basis-1/3 p-5 border-2 rounded-sm">
-                      @include('partials.latest-posts')
+                      @include('partials.posts.latest-posts')
+
+                      <div class="mt-3 p-2 py-4">
+                        @include('partials.categories.latest-categories')
+                      </div>
+                    
                     </div>
                 
                     <div class="basis-1/2 p-5 border-2 rounded-sm">
                       
-                      @include('partials.create-post-form')
+                      @include('partials.posts.create-post-form')
                     </div>
-                
-                    {{-- <div class="basis-1/6 p-5 border-2 rounded-sm">
-                       
-                    </div> --}}
+              
                 
                   </div>
               

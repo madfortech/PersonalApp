@@ -16,8 +16,11 @@
         
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+       
+        <link rel="stylesheet" href="{{asset('css/ckin.css')}}">
 
+         
     </head>
     <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">
@@ -41,7 +44,8 @@
         <script>
             feather.replace();
         </script>
- 
-         
+      
+      <script src="{{asset('js/ckin.js')}}"></script>
+      <script src="{{ mix('js/app.js') }}" defer></script>
      </body>
 </html>

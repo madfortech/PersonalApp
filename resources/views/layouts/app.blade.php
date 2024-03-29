@@ -16,11 +16,14 @@
         
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+      
 
- 
-    </head>
-    <body class="font-sans antialiased" id="rightclickdisable">
+        <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset('css/ckin.css')}}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+        
+     <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">
           
 
@@ -57,7 +60,7 @@
         <script>
             feather.replace();
         </script>
- 
-         
+        <script src="{{asset('js/ckin.js')}}"></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
      </body>
 </html>
