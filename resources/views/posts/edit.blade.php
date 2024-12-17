@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
               @section('title','Edit Post')
               <x-slot name="header">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -28,5 +28,5 @@
              
             
             
-</x-admin-layout>
+</x-app-layout>
  

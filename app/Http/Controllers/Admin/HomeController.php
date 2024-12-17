@@ -16,13 +16,13 @@ class HomeController extends Controller
      */
     public function index()
     { 
-        $latestuser = User::latest()->limit(5)->get();
+        $latestuser = User::latest()->limit(7)->get();
         // Retrieve all posts from the database
-        $latestpost = Post::latest()->limit(5)->get();
-        $latestCategory = Category::latest()->limit(5)->get();
+        $latestpost = Post::latest()->limit(7)->get();
+        $latestCategory = Category::latest()->limit(7)->get();
 
-      
-      
+       
+        
         return view('admin.home', compact('latestpost', 'latestuser','latestCategory'));
     }
 }

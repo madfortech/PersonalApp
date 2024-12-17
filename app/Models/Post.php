@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Manipulations;
 use Carbon\Carbon;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 class Post extends Model implements HasMedia,Feedable
 {
@@ -21,9 +22,13 @@ class Post extends Model implements HasMedia,Feedable
     use SoftDeletes;
     use InteractsWithMedia;
     use HasFactory;
-   
+    use Likeable;
+    use HasRichText;
+
     protected $table = 'posts';
     
+    protected $guarded = [];
+
     protected $fillable = [
         'user_id',
         'title',
@@ -92,7 +97,7 @@ class Post extends Model implements HasMedia,Feedable
         $this
             ->addMediaConversion('preview')
             ->extractVideoFrameAtSecond(10)
-            ->performOnCollections('videos')
+            ->performOnCollections('posts')
             ->sharpen(90);
     }
 
@@ -102,4 +107,14 @@ class Post extends Model implements HasMedia,Feedable
     {
         return $this->belongsToMany(Category::class,'post_category');
     }
+
+
+    protected $richTextFields  = [
+        'description',
+    ];
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'watchlists', 'post_id', 'user_id');
+    }
+    
 }

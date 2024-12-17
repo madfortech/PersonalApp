@@ -28,11 +28,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('backup:clean')->weekly()->at('01:00');
         $schedule->command('backup:run')->weekly()->at('01:30');
-        $schedule->command('generate-sitemap')->daily();
+        $schedule->command('generate-sitemap')->weekly('02:00');
         $schedule->call(function () {
             Artisan::call('view:clear');
             Artisan::call('route:clear');
-        })->dailyAt('13:00');
+        })->dailyAt('12:30');
 
      }
 

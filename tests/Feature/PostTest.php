@@ -1,29 +1,18 @@
 <?php
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Faker\Factory;
+ 
 
-use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
-
-
-test('create posts', function () {
+test('create post', function () {
     
-    
-
-    $faker = Factory::create();
-
-    $userId = $faker->numberBetween(1, 1000); // Generate a random number between 1 and 1000
-
-    $post = new Post([
-        'title' => 'Traveling to Europe',
-        'description' => 'amamamam',
-        'user_id' => $userId, // Assign the generated ID
-        'created_at' =>now(),
-        'updated_at' =>now(),
+    $category = Category::factory()->create();
+    $post = Post::factory()->create([
+        'category_id' => $category->id,
     ]);
 
-    $post->save();
-    
-    $this->assertModelExists($post);
-});
+    $response = $this->get('/posts');
+
+    $response
+        ->assertOk()
+        ->assertSee($category->title)
+        ->assertSee($post->title);
  
+});

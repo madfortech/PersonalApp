@@ -16,6 +16,6 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        // return redirect('/');
+       //
     }
 }

@@ -23,13 +23,13 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => [
-                'string',
+               
                 'max:255',
                 'required',
             ],
             'description' => [
                 'max:255',
-                'string',
+                
                 'required',
             ],
             'avatar' => [
@@ -38,6 +38,7 @@ class StorePostRequest extends FormRequest
                 'max:1048576', // Maximum file size (1GB in this example).
                 'required',
             ],
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

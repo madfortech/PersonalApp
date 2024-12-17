@@ -12,16 +12,16 @@
 
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+      
+        <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
  
         
-        <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
         <!-- Scripts -->
-      
-
-        <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{{asset('css/ckin.css')}}">
         @vite('resources/css/app.css')
-
+    
         
      <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">
@@ -42,13 +42,11 @@
                 {{ $slot }}
  
             </main>
-
-          
-
-            {{-- <footer class="py-5 grid grid-rows-1 bg-emerald-300">
-                @include('footer')
-            </footer> --}}
+ 
         </div>
+      
+    
+
         <script>
             const myDiv = document.getElementById("rightclickdisable");
 
@@ -57,9 +55,8 @@
             });
 
         </script>
-        <script>
-            feather.replace();
-        </script>
+        
+
         <script src="{{asset('js/ckin.js')}}"></script>
         @vite('resources/js/app.js')
      </body>

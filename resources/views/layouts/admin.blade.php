@@ -12,15 +12,13 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
- 
-        
+      
         <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
-        <!-- Scripts -->
+        
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        @vite('resources/css/app.css')
         
- 
-
 
     </head>
     <body class="font-sans antialiased" id="rightclickdisable">
@@ -44,6 +42,7 @@
             </main>
  
         </div>
+ 
         <script>
             const myDiv = document.getElementById("rightclickdisable");
 
@@ -52,9 +51,10 @@
             });
 
         </script>
-        <script>
-            feather.replace();
-        </script>
+      
+      
         @vite('resources/js/app.js')
+
+      
      </body>
 </html>

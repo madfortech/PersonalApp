@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ ('/') }}" class="font-bold capitalize">
-                       blog
+                        {{ __('Blog') }}
                     </a>
                 </div>
 
@@ -21,6 +21,10 @@
                         <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('watchlist.index')" :active="request()->routeIs('watchlist')">
+                            {{ __('Watchlist') }}
+                        </x-nav-link>
                     @endrole
                     @endauth
 
@@ -30,14 +34,20 @@
                         </x-nav-link>
                     @endguest
 
-                   
-
+            
                     @role('super-admin')
                         <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                             {{ __('Add new') }}
                         </x-nav-link>
                     @endrole
-                  
+
+                    <x-nav-link :href="route('privacy.index')" :active="request()->routeIs('terms')">
+                        {{ __('Privacy') }}
+                    </x-nav-link>
+                     
+                    <x-nav-link :href="route('terms.index')" :active="request()->routeIs('terms')">
+                        {{ __('Terms') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -46,7 +56,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-none text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             
                             <div>
                                 {{ Auth::user()->name }}
@@ -61,14 +71,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <x-dropdown-link :href="route('archive.index')">
-                            {{ __('Archive') }}
-                        </x-dropdown-link>
-
+                      
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -120,8 +123,11 @@
                 {{ __('Login') }}
             </x-responsive-nav-link>
             @endguest
- 
- 
+  
+          
+            <x-responsive-nav-link :href="route('terms.index')" :active="request()->routeIs('terms')">
+                {{ __('Terms') }}
+            </x-responsive-nav-link>
         </div>
 
         @auth

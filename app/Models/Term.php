@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Term extends Model
+{
+    use HasFactory;
+
+    protected $table = 'terms';
+
+    protected $fillable = [
+        'terms',
+       ' term_id',
+        'created_at',
+        'updated_at',
+    ];
+
+    protected $casts = [
+        'created_at',
+        'updated_at',
+    ];
+}

@@ -10,8 +10,14 @@ class UsersController extends Controller
 {
     public function index()
     { 
-        $user = User::all();
-        $latestpost = Post::latest()->limit(5)->get();
+        $user = User::paginate(7);
+        $latestpost = Post::latest()->limit(7)->get();
         return view('admin.users.index', compact('user', 'latestpost'));
+    }
+
+    public function show($id){
+
+        $user = User::find($id);
+        return view('admin.users.show', compact('user'));
     }
 }
