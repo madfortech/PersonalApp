@@ -11,9 +11,9 @@
     </x-slot>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid grid-cols-2	 gap-3 p-3 rounded-sm">
+        <div class="lg:grid grid-cols-2	 gap-3 p-3 rounded-xs">
             
-            <div class="py-2 px-3 border-gray-400 border-2 rounded capitalize hover:border-gray-500 mb-2">
+            <div class="py-2 px-3 border-gray-400 border-2 rounded-sm capitalize hover:border-gray-500 mb-2">
                 <div x-data="{ open: false }">
                     <button @click="open = ! open">
                         <i class="fa-solid fa-ellipsis-vertical"></i>                      
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <div class="py-2 px-3 border-gray-400 border-2 rounded capitalize hover:border-gray-500 mb-2">
+            <div class="py-2 px-3 border-gray-400 border-2 rounded-sm capitalize hover:border-gray-500 mb-2">
                 
                 <div x-data="{ open: false }">
                     <button @click="open = ! open">

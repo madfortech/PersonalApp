@@ -17,6 +17,9 @@
         
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <x-rich-text::styles />
+
        @vite('resources/css/app.css')
         
 
@@ -27,7 +30,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="shadow">
+                <header class="shadow-sm">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 pt-24">
                         {{ $header }}
                     </div>

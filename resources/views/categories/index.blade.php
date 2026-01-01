@@ -7,8 +7,8 @@
       </x-slot>
 
      
-        <div class="lg:flex flex-row gap-3 p-3 rounded-sm">
-          <div class="basis-1/3 p-5 border-2 rounded-sm">
+        <div class="lg:flex flex-row gap-3 p-3 rounded-xs">
+          <div class="basis-1/3 p-5 border-2 rounded-xs">
             @include('partials.posts.latest-posts')
 
             <div class="mt-3 p-2 py-4">
@@ -16,7 +16,7 @@
             </div>
           </div>
 
-          <div class="basis-1/2 p-5 border-2 rounded-sm">
+          <div class="basis-1/2 p-5 border-2 rounded-xs">
             @include('partials.categories.view-all-categories')
           </div>
     

@@ -1,6 +1,6 @@
     
          
-            <div class="border-2 rounded-sm p-3">
+            <div class="border-2 rounded-xs p-3">
               <h2 class="text-2xl capitalize">{{__('latest categories')}}</h2>  
               <ul class="list-decimal divide-y py-5 px-3">
 

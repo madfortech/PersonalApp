@@ -1,6 +1,6 @@
     
          
-            <div class="border-2 rounded-sm p-3">
+            <div class="border-2 rounded-xs p-3">
               <h2 class="text-2xl capitalize">{{__('recent users')}}</h2>
               <ul class="list-decimal py-5 divide-y px-3">
 

@@ -29,6 +29,11 @@ class Post extends Model implements HasMedia,Feedable
     
     protected $guarded = [];
 
+    protected $richTextAttributes = [
+        'title',
+        'description',
+    ];
+
     protected $fillable = [
         'user_id',
         'title',

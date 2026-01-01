@@ -7,7 +7,7 @@
                 </x-slot>
 
                
-                  <div class="lg:grid grid-cols-1 p-3 max-w-7xl mx-auto rounded-sm">
+                  <div class="lg:grid grid-cols-1 p-3 max-w-7xl mx-auto rounded-xs">
                    
                     <div class="p-5">
                       @include('partials.posts.view-all-posts')

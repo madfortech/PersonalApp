@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-3 p-3 rounded-sm">
+        <div class="grid grid-cols-1 gap-3 p-3 rounded-xs">
             
                
             <div class="overflow-x-auto">

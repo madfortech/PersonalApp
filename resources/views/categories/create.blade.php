@@ -8,8 +8,8 @@
       </h2>
     </x-slot>
 
-      <div class="lg:flex flex-row gap-3 p-3 rounded-sm">
-        <div class="basis-1/3 p-5 border-2 rounded-sm">
+      <div class="lg:flex flex-row gap-3 p-3 rounded-xs">
+        <div class="basis-1/3 p-5 border-2 rounded-xs">
           @include('partials.posts.latest-posts')
 
          
@@ -19,7 +19,7 @@
         
         </div>
     
-        <div class="basis-1/2 p-5 border-2 rounded-sm">
+        <div class="basis-1/2 p-5 border-2 rounded-xs">
           <h2 class="text-2xl">Add new category</h2>
           @include('partials.categories.create-category-form')
         </div>

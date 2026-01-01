@@ -19,7 +19,7 @@
           
           <input id="title" type="text" 
             class=" border-gray-300 text-indigo-600 
-            shadow-sm focus:ring-indigo-500 w-full" 
+            shadow-xs focus:ring-indigo-500 w-full" 
             name="title"
             placeholder="Title">
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
@@ -34,7 +34,7 @@
           {{ __('Add new') }}
         </a>
         <select name="category_id" id="category_id" class="w-full border-gray-300 text-indigo-600 
-          shadow-sm focus:ring-indigo-500">
+          shadow-xs focus:ring-indigo-500">
           @foreach($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
@@ -50,7 +50,7 @@
         <span><i>max size 1gb only</i></span>
         <input id="avatar" type="file" 
           class="rounded border-gray-300 text-indigo-600 w-full
-          shadow-sm focus:ring-indigo-500" 
+          shadow-xs focus:ring-indigo-500" 
           name="avatar">
         <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
       </label>

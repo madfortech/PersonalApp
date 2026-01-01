@@ -20,7 +20,7 @@
             id="name" 
             type="text" 
             class=" border-gray-300 text-indigo-600 
-            shadow-sm focus:ring-indigo-500 w-full" 
+            shadow-xs focus:ring-indigo-500 w-full" 
             name="name"
             placeholder="name"
             x-model="message">

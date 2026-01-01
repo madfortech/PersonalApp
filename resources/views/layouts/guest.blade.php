@@ -17,7 +17,11 @@
         <!-- Scripts -->
        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
       
-        <x-rich-text-trix-styles />
+       <x-rich-text::styles />
+
+
+      
+        
 
       
     </head>
