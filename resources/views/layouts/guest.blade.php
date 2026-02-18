@@ -17,12 +17,7 @@
         <!-- Scripts -->
        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
       
-       <x-rich-text::styles />
-
-
       
-        
-
       
     </head>
     <body class="font-sans text-gray-900 antialiased">

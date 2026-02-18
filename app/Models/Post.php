@@ -13,8 +13,7 @@ use Spatie\Sitemap\Tags\Url;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model implements HasMedia,Feedable
 {
@@ -22,18 +21,12 @@ class Post extends Model implements HasMedia,Feedable
     use SoftDeletes;
     use InteractsWithMedia;
     use HasFactory;
-    use Likeable;
-    use HasRichText;
+    use Sluggable;
 
     protected $table = 'posts';
     
     protected $guarded = [];
-
-    protected $richTextAttributes = [
-        'title',
-        'description',
-    ];
-
+ 
     protected $fillable = [
         'user_id',
         'title',
@@ -49,6 +42,8 @@ class Post extends Model implements HasMedia,Feedable
         'updated_at',
         'deleted_at',
     ];
+
+    
 
     public function toSitemapTag(): Url | string | array
     {
@@ -67,17 +62,23 @@ class Post extends Model implements HasMedia,Feedable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo The user that owns the resource.
     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    
 
-    public function url()
+    // public function url()
+    // {
+    //     if ($this->slug) {
+    //         return route('posts.show', $this->slug);
+    //     }
+    //     return route('posts.show', $this->id);
+    // }
+
+    public function sluggable(): array
     {
-        if ($this->slug) {
-            return route('posts.show', $this->slug);
-        }
-        return route('posts.show', $this->id);
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     public function toFeedItem(): FeedItem
@@ -106,20 +107,6 @@ class Post extends Model implements HasMedia,Feedable
             ->sharpen(90);
     }
 
-    
-    
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class,'post_category');
-    }
-
-
-    protected $richTextFields  = [
-        'description',
-    ];
-
-    public function users() {
-        return $this->belongsToMany(User::class, 'watchlists', 'post_id', 'user_id');
-    }
+ 
     
 }

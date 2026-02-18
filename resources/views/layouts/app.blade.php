@@ -17,14 +17,12 @@
  
         
         <!-- Scripts -->
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
         <link rel="stylesheet" href="{{asset('css/ckin.css')}}">
-
-       <x-rich-text::styles />
-
         @vite('resources/css/app.css')
-    
+        @fluxAppearance
+        @livewireStyles
         
      <body class="font-sans antialiased" id="rightclickdisable">
         <div class="min-h-screen bg-gray-100">
@@ -40,8 +38,8 @@
             @endif
 
             <!-- Page Content -->
-            <main class="py-5">
-                @include('layouts.navigation')
+            <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+ 
                 {{ $slot }}
  
             </main>
@@ -62,5 +60,8 @@
 
         <script src="{{asset('js/ckin.js')}}"></script>
         @vite('resources/js/app.js')
+        @fluxScripts
+        @livewireScripts
+
      </body>
 </html>

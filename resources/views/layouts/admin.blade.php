@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
       
-        <title>@yield('title')</title>
+        <title></title>
        
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,34 +18,20 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <x-rich-text::styles />
+       
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-       @vite('resources/css/app.css')
-        
+        @vite(['resources/css/app.css','resources/js/app.js'])
+
+        @fluxAppearance
+        @livewireStyles
+       
 
     </head>
     <body class="font-sans antialiased" id="rightclickdisable">
-        <div class="min-h-screen bg-gray-100">
-          
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="shadow-sm">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 pt-24">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+        {{ $slot }}
 
-            <!-- Page Content -->
-            <main>
-                @include('layouts.navigation')
-                {{ $slot }}
- 
-            </main>
- 
-        </div>
- 
         <script>
             const myDiv = document.getElementById("rightclickdisable");
 
@@ -54,10 +40,9 @@
             });
 
         </script>
-      
-      
-        @vite('resources/js/app.js')
 
-      
-     </body>
+       
+        @livewireScripts
+        @fluxScripts
+    </body>
 </html>

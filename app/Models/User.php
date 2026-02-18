@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Nowendwell\LaravelTerms\Traits\AcceptsTerms;
-use Overtrue\LaravelLike\Traits\Liker;
 
 class User extends Authenticatable  implements MustVerifyEmail  
 {
@@ -17,7 +16,6 @@ class User extends Authenticatable  implements MustVerifyEmail
     use HasFactory;
     use HasRoles;
     use AcceptsTerms;
-    use Liker;
    
 
     protected $table = 'users';
@@ -80,23 +78,12 @@ class User extends Authenticatable  implements MustVerifyEmail
         return $dateTime->format('Y-m-d H:i:s');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Post>
-    */
-    public function posts():HasMany
-    {
-        return $this->hasMany(Post::class);
-    }
+  
   
     public static $searchable = [
         'name',
         'email',
     ];
 
-    public function watchlist() {
-        return $this->belongsToMany(Post::class, 'watchlists', 'user_id', 'post_id')
-        ->withTimestamps();
-    }
-    
-    
+ 
 }
